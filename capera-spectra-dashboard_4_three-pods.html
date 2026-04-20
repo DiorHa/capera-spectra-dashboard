@@ -634,10 +634,19 @@ body.auth-locked #auth-gate { display: flex; }
 
 /* Responsive */
 @media (max-width: 800px) {
+  .header { padding: 14px 14px 0; }
+  .content { padding: 16px 14px 28px; }
+  .tab-btn { padding: 9px 12px; }
+  .tab-sep { display: none; }
   .modules-layout { grid-template-columns: 1fr; }
   .grid-2, .grid-3, .split-cols, .kpi-grid, .score-grid, .charter-grid { grid-template-columns: 1fr; }
   .decision-strip { grid-template-columns: 1fr; }
   .mini-table .row { grid-template-columns: 1fr; }
+  .module-detail { padding: 16px; }
+  .detail-tabs { overflow-x: auto; white-space: nowrap; padding-bottom: 10px; }
+  .phase-card { flex-direction: column; gap: 8px; }
+  .phase-week { min-width: auto; }
+  .phase-icon { margin-left: 0; }
   .comp-cols, .comp-row { grid-template-columns: 1fr; gap: 4px; }
   .comp-cols-head { display: none; }
   .comp-row { padding: 14px 16px; }
@@ -1230,7 +1239,7 @@ function renderTeamRoster() {
           📈 ${r.scaleNote}
         </div>
       </div>
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;">
         <div>
           <div style="font-size:10px;font-weight:700;color:var(--text-dim);text-transform:uppercase;letter-spacing:1px;margin-bottom:6px;">Key Tasks</div>
           ${r.tasks.map(t => `<div style="font-size:11px;color:var(--text-muted);padding:3px 0;display:flex;gap:6px;line-height:1.4;"><span style="color:${r.color};flex-shrink:0;">›</span>${t}</div>`).join('')}
