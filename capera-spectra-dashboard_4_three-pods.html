@@ -1,0 +1,1182 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Capera × Spectra - Strategic Analysis Dashboard</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0B0F1A;
+  --surface: #111827;
+  --surface-alt: #1A2235;
+  --card: #161E2E;
+  --border: #2A3654;
+  --border-hover: #3D5A99;
+  --accent: #4F8EF7;
+  --accent-light: #6BA3FF;
+  --accent-dim: #2A4A8A;
+  --gold: #F5A623;
+  --gold-dim: #8B6914;
+  --green: #34D399;
+  --green-dim: #065F46;
+  --red: #F87171;
+  --red-dim: #7F1D1D;
+  --orange: #FB923C;
+  --purple: #A78BFA;
+  --pink: #F472B6;
+  --text: #E8ECF4;
+  --text-muted: #8896B3;
+  --text-dim: #5A6A8A;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Animations */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.fade-up { animation: fadeUp 0.5s ease forwards; opacity: 0; }
+.d1 { animation-delay: 0.05s; } .d2 { animation-delay: 0.1s; } .d3 { animation-delay: 0.15s; }
+.d4 { animation-delay: 0.2s; } .d5 { animation-delay: 0.25s; } .d6 { animation-delay: 0.3s; }
+.d7 { animation-delay: 0.35s; } .d8 { animation-delay: 0.4s; } .d9 { animation-delay: 0.45s; }
+.d10 { animation-delay: 0.5s; }
+
+/* Header */
+.header {
+  padding: 20px 28px 0;
+  border-bottom: 1px solid var(--border);
+}
+.header-top {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.header-label {
+  font-size: 10px; font-weight: 700; color: var(--accent);
+  text-transform: uppercase; letter-spacing: 2px; margin-bottom: 4px;
+}
+.header-title {
+  font-size: 24px; font-weight: 800; color: var(--text); letter-spacing: -0.5px;
+}
+.header-sub {
+  font-size: 12px; color: var(--text-muted); margin-top: 2px;
+}
+.header-badges {
+  display: flex; gap: 8px; flex-wrap: wrap;
+}
+.badge {
+  font-size: 10px; color: var(--text-dim);
+  background: rgba(42,54,84,0.4); padding: 4px 10px; border-radius: 6px;
+}
+
+/* Tabs */
+.tab-bar {
+  display: flex; gap: 0; overflow-x: auto;
+}
+.tab-btn {
+  background: transparent; color: var(--text-muted);
+  border: none; border-bottom: 2px solid transparent;
+  padding: 10px 18px; font-size: 12px; font-weight: 600;
+  cursor: pointer; transition: all 0.2s;
+  font-family: 'DM Sans', sans-serif;
+  display: flex; align-items: center; gap: 6px;
+  border-radius: 8px 8px 0 0; white-space: nowrap;
+}
+.tab-btn:hover { color: var(--accent-light); }
+.tab-btn.active {
+  background: var(--surface-alt); color: var(--accent);
+  border-bottom-color: var(--accent);
+}
+.tab-sep {
+  color: var(--text-dim);
+  font-size: 11px;
+  align-self: center;
+  padding: 0 6px;
+}
+
+/* Content */
+.content { padding: 24px 28px 40px; max-width: 100%; }
+.tab-panel { display: none; }
+.tab-panel.active { display: block; }
+
+/* Utility */
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+.section-label {
+  font-size: 11px; font-weight: 700; color: var(--text-muted);
+  text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 12px;
+}
+.decision-strip {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin-bottom: 14px;
+}
+.decision-item {
+  background: rgba(42,54,84,0.28);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 10px 12px;
+}
+.decision-k {
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--text-dim);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 4px;
+}
+.decision-v {
+  font-size: 12px;
+  color: var(--text);
+  line-height: 1.4;
+}
+.layer-detail {
+  margin-top: 8px;
+  background: rgba(11,15,26,0.45);
+  border: 1px solid rgba(42,54,84,0.55);
+  border-radius: 8px;
+  padding: 8px 10px;
+}
+.layer-detail summary {
+  cursor: pointer;
+  font-size: 11px;
+  color: var(--accent-light);
+  font-weight: 600;
+}
+.layer-detail .detail-body {
+  margin-top: 8px;
+  font-size: 11px;
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+.evidence-footer {
+  margin-top: 14px;
+  border: 1px dashed var(--border);
+  border-radius: 10px;
+  padding: 8px 10px;
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  font-size: 10px;
+  color: var(--text-dim);
+}
+.evidence-footer span {
+  background: rgba(42,54,84,0.3);
+  border-radius: 5px;
+  padding: 2px 8px;
+}
+.score-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin-bottom: 12px;
+}
+.score-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 12px;
+}
+.score-title {
+  font-size: 12px;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+.score-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  font-size: 11px;
+  color: var(--text-muted);
+  padding: 2px 0;
+}
+.score-row strong { color: var(--text); }
+.charter-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+.charter-card {
+  background: rgba(79,142,247,0.06);
+  border: 1px solid rgba(79,142,247,0.18);
+  border-radius: 10px;
+  padding: 10px 12px;
+}
+.charter-card h5 {
+  font-size: 11px;
+  color: var(--accent);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 6px;
+}
+.charter-card p {
+  font-size: 12px;
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+.mini-table {
+  margin-top: 10px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  overflow: hidden;
+}
+.mini-table .row {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr 1fr 1fr 1fr;
+}
+.mini-table .row > div {
+  padding: 8px 10px;
+  font-size: 11px;
+  border-right: 1px solid rgba(42,54,84,0.45);
+  border-bottom: 1px solid rgba(42,54,84,0.45);
+}
+.mini-table .row > div:last-child { border-right: none; }
+.mini-table .head > div {
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--text-dim);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  background: rgba(42,54,84,0.3);
+}
+
+/* Stat Cards */
+.stat-card {
+  background: linear-gradient(135deg, var(--card), var(--surface-alt));
+  border: 1px solid var(--border); border-radius: 14px;
+  padding: 20px 18px; text-align: center;
+  transition: border-color 0.3s, transform 0.2s;
+}
+.stat-card:hover { border-color: var(--accent-dim); transform: translateY(-2px); }
+.stat-icon { font-size: 28px; margin-bottom: 6px; }
+.stat-value {
+  font-size: 26px; font-weight: 800; color: var(--accent);
+  font-family: 'DM Sans', sans-serif; letter-spacing: -0.5px;
+}
+.stat-label { font-size: 12px; color: var(--text-muted); margin-top: 4px; line-height: 1.4; }
+
+/* Cards */
+.insight-card {
+  background: var(--card); border: 1px solid var(--border); border-radius: 12px;
+  padding: 16px; border-left: 3px solid var(--accent);
+}
+.insight-card h4 { font-size: 13px; font-weight: 700; margin-bottom: 6px; }
+.insight-card p { font-size: 12px; color: var(--text-muted); line-height: 1.6; }
+
+/* Priority flow */
+.priority-flow { display: flex; flex-direction: column; gap: 0; }
+.priority-item { display: flex; gap: 16px; align-items: flex-start; }
+.priority-dot {
+  width: 36px; height: 36px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 12px; font-weight: 800; color: #000; flex-shrink: 0;
+}
+.priority-line { width: 2px; height: 32px; background: var(--border); margin: 0 auto; }
+.priority-content { padding-bottom: 16px; }
+.priority-content h4 { font-size: 14px; font-weight: 700; color: var(--text); }
+.priority-content p { font-size: 12px; color: var(--text-muted); margin-top: 2px; }
+.pill {
+  font-size: 10px; padding: 2px 8px; border-radius: 4px;
+  display: inline-block; margin-top: 4px;
+}
+
+/* Module sidebar */
+.modules-layout { display: grid; grid-template-columns: 260px 1fr; gap: 20px; }
+.module-list { display: flex; flex-direction: column; gap: 6px; }
+.module-item {
+  background: var(--card); border: 1.5px solid var(--border); border-radius: 12px;
+  padding: 14px 16px; cursor: pointer; transition: all 0.25s ease;
+  display: flex; align-items: center; gap: 12px;
+}
+.module-item:hover { border-color: rgba(79,142,247,0.35); }
+.module-item.active { border-color: var(--accent); background: rgba(79,142,247,0.06); }
+.module-icon {
+  width: 40px; height: 40px; border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 20px; flex-shrink: 0;
+}
+.module-tag {
+  font-size: 10px; font-weight: 800; color: #000;
+  padding: 2px 6px; border-radius: 4px; font-family: 'DM Mono', monospace;
+}
+.module-name { font-size: 13px; font-weight: 600; color: var(--text); }
+.module-short { font-size: 11px; color: var(--text-muted); margin-top: 2px; }
+
+/* Module detail */
+.module-detail {
+  border: 1px solid var(--border); border-radius: 16px; padding: 24px;
+}
+.module-detail-header { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; }
+.module-detail-icon {
+  width: 48px; height: 48px; border-radius: 12px;
+  display: flex; align-items: center; justify-content: center; font-size: 26px;
+}
+.module-detail-title { font-size: 20px; font-weight: 700; font-family: 'DM Sans', sans-serif; }
+.module-meta { display: flex; gap: 12px; margin-top: 4px; }
+.module-meta span { font-size: 11px; padding: 2px 8px; border-radius: 6px; }
+
+.detail-tabs { display: flex; gap: 4px; margin-bottom: 16px; border-bottom: 1px solid var(--border); padding-bottom: 8px; }
+.detail-tab {
+  background: transparent; color: var(--text-muted); border: none; border-radius: 6px;
+  padding: 6px 14px; font-size: 12px; font-weight: 600; cursor: pointer;
+  font-family: 'DM Sans', sans-serif; transition: all 0.2s;
+}
+.detail-tab.active { background: rgba(79,142,247,0.15); color: var(--accent); }
+
+.detail-section { display: none; }
+.detail-section.active { display: block; }
+
+.split-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.col-label {
+  font-size: 11px; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 1px; margin-bottom: 8px;
+}
+.col-item {
+  font-size: 12px; color: var(--text-muted); padding: 5px 0;
+  border-bottom: 1px solid rgba(42,54,84,0.3); display: flex; gap: 6px;
+}
+.kpi-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.kpi-item {
+  border-radius: 8px; padding: 10px 14px; font-size: 12px; color: var(--text);
+  display: flex; align-items: center; gap: 8px;
+}
+.kpi-dot { width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; }
+.risk-item {
+  background: rgba(248,113,113,0.05); border: 1px solid rgba(248,113,113,0.15);
+  border-radius: 8px; padding: 10px 14px; font-size: 12px; color: var(--text);
+  display: flex; align-items: center; gap: 8px; margin-bottom: 8px;
+}
+.price-item {
+  background: rgba(52,211,153,0.05); border: 1px solid rgba(52,211,153,0.15);
+  border-radius: 8px; padding: 10px 14px; font-size: 12px; color: var(--text);
+  display: flex; align-items: center; gap: 8px; margin-bottom: 8px;
+}
+
+/* Timeline */
+.timeline-container {
+  background: linear-gradient(135deg, var(--card), var(--surface-alt));
+  border: 1px solid var(--border); border-radius: 16px; padding: 28px;
+}
+.timeline-bar {
+  height: 6px; background: var(--border); border-radius: 3px;
+  margin-bottom: 32px; overflow: hidden; display: flex;
+}
+.timeline-bar div { border-right: 2px solid var(--bg); }
+.timeline-bar div:last-child { border-right: none; }
+.phase-card {
+  display: flex; align-items: flex-start; gap: 16px;
+  padding: 16px; border-radius: 12px; margin-bottom: 12px;
+  border-left: 4px solid;
+}
+.phase-week {
+  min-width: 80px; font-size: 12px; font-weight: 700;
+  font-family: 'DM Mono', monospace;
+}
+.phase-name { font-size: 15px; font-weight: 700; color: var(--text); margin-bottom: 4px; }
+.phase-desc { font-size: 12px; color: var(--text-muted); line-height: 1.5; }
+.phase-icon {
+  margin-left: auto; font-size: 20px; width: 36px; height: 36px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+}
+.success-box {
+  margin-top: 24px; padding: 16px; border-radius: 12px;
+  background: rgba(52,211,153,0.05); border: 1px solid rgba(52,211,153,0.15);
+}
+.success-label {
+  font-size: 11px; font-weight: 700; color: var(--green);
+  text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px;
+}
+.success-item {
+  font-size: 12px; color: var(--text-muted); display: flex;
+  align-items: center; gap: 6px; padding: 3px 0;
+}
+
+/* Comparison table */
+.comp-table {
+  background: var(--card); border: 1px solid var(--border);
+  border-radius: 16px; overflow: hidden;
+}
+.comp-header {
+  padding: 16px 20px; border-bottom: 1px solid var(--border);
+  display: flex; align-items: center; gap: 12px; flex-wrap: wrap;
+}
+.comp-header h3 { font-size: 15px; font-weight: 700; font-family: 'DM Sans', sans-serif; }
+.comp-header span { font-size: 11px; color: var(--text-muted); margin-left: auto; }
+.comp-cols {
+  display: grid; grid-template-columns: 140px 70px 1fr 1fr 1fr; gap: 0;
+  padding: 10px 16px; font-size: 10px; font-weight: 700; color: var(--text-dim);
+  text-transform: uppercase; letter-spacing: 1px;
+}
+.comp-cols-head { background: var(--surface-alt); border-bottom: 1px solid var(--border); }
+.comp-row {
+  display: grid; grid-template-columns: 140px 70px 1fr 1fr 1fr; gap: 0;
+  padding: 12px 16px; border-bottom: 1px solid rgba(42,54,84,0.3);
+  transition: background 0.15s;
+}
+.comp-row:hover { background: rgba(79,142,247,0.04); }
+.comp-row:nth-child(even) { background: rgba(26,34,53,0.4); }
+.comp-row:nth-child(even):hover { background: rgba(79,142,247,0.04); }
+.comp-service { font-size: 12px; font-weight: 600; color: var(--text); }
+.comp-modules {
+  text-align: center; font-size: 10px; font-weight: 700; color: var(--accent);
+  font-family: 'DM Mono', monospace;
+}
+.comp-modules span {
+  background: rgba(79,142,247,0.12); padding: 2px 6px; border-radius: 4px;
+}
+.comp-capera { font-size: 11px; color: var(--gold); line-height: 1.5; }
+.comp-spectra { font-size: 11px; color: var(--accent-light); line-height: 1.5; }
+.comp-kpis { font-size: 11px; color: var(--text-muted); line-height: 1.5; }
+
+/* Market tab */
+.market-alert {
+  background: linear-gradient(135deg, rgba(248,113,113,0.05), transparent);
+  border: 1px solid rgba(248,113,113,0.15); border-radius: 16px; padding: 24px;
+}
+.market-alert h3 { font-size: 15px; font-weight: 700; color: var(--red); margin-bottom: 12px; }
+.market-stat { text-align: center; }
+.market-stat-val {
+  font-size: 24px; font-weight: 800; color: var(--red); font-family: 'DM Sans', sans-serif;
+}
+.market-stat-desc { font-size: 11px; color: var(--text-muted); margin-top: 4px; line-height: 1.4; }
+
+.compliance-card, .esg-card {
+  background: var(--card); border: 1px solid var(--border); border-radius: 14px;
+  padding: 20px; height: 100%;
+}
+.compliance-card h4 { font-size: 13px; font-weight: 700; color: var(--gold); margin-bottom: 12px; }
+.esg-card h4 { font-size: 13px; font-weight: 700; color: var(--green); margin-bottom: 12px; }
+.compliance-item { margin-bottom: 10px; }
+.compliance-item h5 { font-size: 12px; font-weight: 600; color: var(--text); }
+.compliance-item p { font-size: 11px; color: var(--text-muted); }
+.esg-text { font-size: 12px; color: var(--text-muted); line-height: 1.7; margin-bottom: 12px; }
+.esg-list-item { font-size: 12px; color: var(--text); padding: 4px 0; display: flex; gap: 6px; }
+.esg-position {
+  margin-top: 14px; padding: 12px; border-radius: 8px;
+  background: rgba(52,211,153,0.05); border: 1px solid rgba(52,211,153,0.1);
+}
+.esg-position h5 { font-size: 11px; color: var(--green); font-weight: 600; }
+.esg-position p { font-size: 11px; color: var(--text-muted); margin-top: 4px; line-height: 1.5; }
+
+.opportunity-box {
+  background: linear-gradient(135deg, rgba(79,142,247,0.05), rgba(167,139,250,0.03));
+  border: 1px solid rgba(79,142,247,0.15); border-radius: 14px; padding: 20px; margin-top: 20px;
+}
+.opportunity-box h4 { font-size: 13px; font-weight: 700; color: var(--accent); margin-bottom: 12px; }
+.opp-item {
+  background: rgba(79,142,247,0.04); border: 1px solid rgba(79,142,247,0.08);
+  border-radius: 10px; padding: 14px;
+}
+.opp-item h5 { font-size: 12px; font-weight: 700; color: var(--text); margin-bottom: 4px; }
+.opp-item p { font-size: 11px; color: var(--text-muted); line-height: 1.5; }
+
+/* Capera profile tab */
+.profile-hero {
+  background: linear-gradient(135deg, rgba(79,142,247,0.08), rgba(245,166,35,0.06));
+  border: 1px solid rgba(79,142,247,0.2);
+  border-radius: 16px;
+  padding: 22px;
+  margin-bottom: 20px;
+}
+.profile-hero h3 {
+  font-size: 16px;
+  font-weight: 800;
+  margin-bottom: 8px;
+}
+.profile-hero p {
+  font-size: 13px;
+  color: var(--text-muted);
+  line-height: 1.7;
+}
+.profile-metric {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 14px;
+}
+.profile-metric .k {
+  font-size: 10px;
+  color: var(--text-dim);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+.profile-metric .v {
+  font-size: 22px;
+  color: var(--accent);
+  font-weight: 800;
+  margin-top: 6px;
+}
+.profile-metric .d {
+  font-size: 11px;
+  color: var(--text-muted);
+  margin-top: 4px;
+}
+.band-list {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 16px;
+}
+.band-list h4 {
+  font-size: 13px;
+  margin-bottom: 10px;
+  color: var(--accent);
+}
+.band-item {
+  font-size: 12px;
+  color: var(--text);
+  padding: 6px 0;
+  border-bottom: 1px solid rgba(42,54,84,0.3);
+}
+.band-item:last-child { border-bottom: none; }
+.model-card {
+  background: linear-gradient(135deg, rgba(26,34,53,0.6), rgba(17,24,39,0.8));
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 16px;
+}
+.model-card h4 {
+  font-size: 13px;
+  margin-bottom: 10px;
+  color: var(--gold);
+}
+.model-point {
+  font-size: 12px;
+  color: var(--text-muted);
+  line-height: 1.6;
+  margin-bottom: 8px;
+}
+
+/* Responsive */
+@media (max-width: 800px) {
+  .modules-layout { grid-template-columns: 1fr; }
+  .grid-2, .grid-3, .split-cols, .kpi-grid, .score-grid, .charter-grid { grid-template-columns: 1fr; }
+  .decision-strip { grid-template-columns: 1fr; }
+  .mini-table .row { grid-template-columns: 1fr; }
+  .comp-cols, .comp-row { grid-template-columns: 1fr; gap: 4px; }
+  .comp-cols-head { display: none; }
+  .comp-row { padding: 14px 16px; }
+  .header-badges { display: none; }
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <div class="header-top">
+    <div>
+      <div class="header-label">Strategic Analysis</div>
+      <div class="header-title">Capera × Spectra</div>
+      <div class="header-sub">Property Management Services — Partnership Opportunity Dashboard</div>
+    </div>
+    <div class="header-badges">
+      <span class="badge">🏢 ~47K units</span>
+      <span class="badge">💶 >€5bn AuM</span>
+      <span class="badge">✅ Capera Decision View</span>
+    </div>
+  </div>
+  <div class="tab-bar">
+    <button class="tab-btn active" data-tab="overview"><span style="font-size:14px;opacity:.85">🧭</span> Overview</button>
+    <button class="tab-btn" data-tab="capera"><span style="font-size:14px;opacity:.85">🏛️</span> Capera Profile</button>
+    <button class="tab-btn" data-tab="spectra"><span style="font-size:14px;opacity:.85">🚀</span> Partner Fit</button>
+    <button class="tab-btn" data-tab="comparison"><span style="font-size:14px;opacity:.85">⚖️</span> Problem Framing</button>
+    <button class="tab-btn" data-tab="modules"><span style="font-size:14px;opacity:.85">🧩</span> Prioritized Bands</button>
+    <button class="tab-btn" data-tab="timeline"><span style="font-size:14px;opacity:.85">🗓️</span> Pilot Logic</button>
+    <span class="tab-sep">Appendix</span>
+    <button class="tab-btn" data-tab="market"><span style="font-size:14px;opacity:.85">🌍</span> Market Appendix</button>
+    <button class="tab-btn" data-tab="team"><span style="font-size:14px;opacity:.85">🧪</span> Team Appendix</button>
+  </div>
+</div>
+
+<!-- CONTENT -->
+<div class="content">
+
+<!-- --------------- OVERVIEW TAB --------------- -->
+<div id="tab-overview" class="tab-panel active">
+  <div class="fade-up" style="background:linear-gradient(135deg,rgba(79,142,247,0.08),rgba(52,211,153,0.05));border:1px solid var(--border);border-radius:16px;padding:24px;margin-bottom:18px;">
+    <div style="font-size:11px;font-weight:700;color:var(--accent);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:8px;">Capera Management View</div>
+    <div style="font-size:14px;color:var(--text);line-height:1.7;">
+      This deck is framed from Capera's perspective: where we need capacity support, what control boundaries must remain, and what pilot outcomes would justify expansion.
+    </div>
+  </div>
+
+  <div class="grid-3 fade-up d1" style="margin-bottom:16px;">
+    <div class="stat-card"><div class="stat-icon">🏢</div><div class="stat-value">~47,000</div><div class="stat-label">Units under management</div></div>
+    <div class="stat-card"><div class="stat-icon">💶</div><div class="stat-value">&gt;€5bn</div><div class="stat-label">Assets under management</div></div>
+    <div class="stat-card"><div class="stat-icon">📍</div><div class="stat-value">10</div><div class="stat-label">Locations across Germany</div></div>
+    <div class="stat-card"><div class="stat-icon">👥</div><div class="stat-value">~200</div><div class="stat-label">Employees across service lines</div></div>
+    <div class="stat-card"><div class="stat-icon">🔁</div><div class="stat-value">2x / Month</div><div class="stat-label">Dunning run rhythm</div></div>
+    <div class="stat-card"><div class="stat-icon">⚠️</div><div class="stat-value">70%</div><div class="stat-label">Market overload signal</div></div>
+  </div>
+
+  <div class="grid-3 fade-up d2">
+    <div class="insight-card" style="border-left-color:var(--red);">
+      <h4 style="color:var(--red);">What Capera Must Protect</h4>
+      <p>Client ownership, compliance quality, and service reliability are non-negotiable.</p>
+    </div>
+    <div class="insight-card" style="border-left-color:var(--gold);">
+      <h4 style="color:var(--gold);">What Capera Needs</h4>
+      <p>Structured partner capacity in repeatable workflows where internal teams are consistently overloaded.</p>
+    </div>
+    <div class="insight-card" style="border-left-color:var(--green);">
+      <h4 style="color:var(--green);">What Good Looks Like</h4>
+      <p>Lower backlog and faster cycle times with full governance traceability and stable quality.</p>
+    </div>
+  </div>
+</div>
+
+<!-- --------------- CAPERA PROFILE TAB --------------- -->
+<div id="tab-capera" class="tab-panel">
+  <div class="profile-hero fade-up">
+    <h3>🏛️ Capera Priorities & Operating Reality</h3>
+    <p>
+      Capera is a Germany-wide residential-focused property management platform with institutional orientation, regional presence, and centralized specialist functions.
+    </p>
+  </div>
+
+  <div class="grid-3 fade-up d1" style="margin-bottom:12px;">
+    <div class="stat-card"><div class="stat-icon">🏢</div><div class="stat-value">~47,000</div><div class="stat-label">Management units (official About page)</div></div>
+    <div class="stat-card"><div class="stat-icon">💶</div><div class="stat-value">&gt;€5bn</div><div class="stat-label">Assets under management (official About page)</div></div>
+    <div class="stat-card"><div class="stat-icon">📐</div><div class="stat-value">~2.0m m²</div><div class="stat-label">Managed area (official About page)</div></div>
+    <div class="stat-card"><div class="stat-icon">📍</div><div class="stat-value">10</div><div class="stat-label">Locations listed on CAPERA Locations page</div></div>
+    <div class="stat-card"><div class="stat-icon">👥</div><div class="stat-value">~200</div><div class="stat-label">Qualified employees (official About page)</div></div>
+    <div class="stat-card"><div class="stat-icon">🏠</div><div class="stat-value">27k + 6k</div><div class="stat-label">Apartments + WEG/SEV units (Sep 2024 release)</div></div>
+  </div>
+
+  <div class="grid-2 fade-up d2" style="margin-bottom:12px;">
+    <div class="insight-card" style="border-left-color:var(--accent);">
+      <h4 style="color:var(--accent);">Service Scope (Official)</h4>
+      <p>Commercial PM, technical PM, reporting/controlling, property & company accounting, ESG support, and nationwide tenant support with local branch presence.</p>
+    </div>
+    <div class="insight-card" style="border-left-color:var(--gold);">
+      <h4 style="color:var(--gold);">Client & Segment Focus (Official)</h4>
+      <p>Institutional and private investors, regulated structures, family offices, property developers, owners' associations, and tenants; strategic focus on residential/institutional portfolios.</p>
+    </div>
+  </div>
+
+  <div class="grid-3 fade-up d3">
+    <div class="profile-metric"><div class="k">Strategic Direction</div><div class="v">Residential Specialization</div><div class="d">Publicly communicated strategic realignment toward residential segment (Sep 2024).</div></div>
+    <div class="profile-metric"><div class="k">Operational Program</div><div class="v">Digitalization + Process Optimization</div><div class="d">2024/2025 releases emphasize IT projects and process quality improvements.</div></div>
+    <div class="profile-metric"><div class="k">Growth Signal</div><div class="v">+1,000 Units (CBRE IM)</div><div class="d">Company reports additional residential/commercial units via expanded cooperation in Berlin (Feb 2025).</div></div>
+  </div>
+
+  <div class="grid-2 fade-up d4" style="margin-top:12px;">
+    <div class="insight-card" style="border-left-color:var(--green);">
+      <h4 style="color:var(--green);">Governance Context</h4>
+      <p>Part of ADOMO Group; member of BVI (German Association of Real Estate Managers). Emphasis on transparency, process quality, and investor-grade reporting.</p>
+    </div>
+    <div class="insight-card" style="border-left-color:var(--purple);">
+      <h4 style="color:var(--purple);">Data Consistency Note</h4>
+      <p>Published figures differ by page/date and metric scope (e.g., total management portfolio vs. residential + WEG/SEV snapshot). Use one metric set per meeting pack.</p>
+    </div>
+  </div>
+
+  <div class="evidence-footer fade-up d5">
+    <span>Sources: capera-immobilien.de/about-capera, /locations, and company news (2024-09-20, 2025-02-03, 2025-02-14)</span>
+    <span>Date checked: 2026-04-13</span>
+    <span>Confidence: High (official company sources)</span>
+  </div>
+</div>
+
+<!-- --------------- SPECTRA PROFILE TAB --------------- -->
+<div id="tab-spectra" class="tab-panel">
+  <div class="profile-hero fade-up" style="background:linear-gradient(135deg,rgba(167,139,250,0.09),rgba(79,142,247,0.06));border-color:rgba(167,139,250,0.25);">
+    <h3>🚀 Spectra Fit From Capera's Perspective</h3>
+    <p>
+      Spectra positions itself as a specialized nearshore extension platform for the DACH real estate and PropTech ecosystem, not a generic outsourcing provider.
+    </p>
+  </div>
+
+  <div class="grid-3 fade-up d1" style="margin-bottom:12px;">
+    <div class="profile-metric"><div class="k">Identity 1</div><div class="v">Specialized Operator</div><div class="d">Domain-focused real-estate/PropTech operator, not a generic labor marketplace.</div></div>
+    <div class="profile-metric"><div class="k">Identity 2</div><div class="v">Extension Model</div><div class="d">Dedicated long-term teams integrated into client operations while preserving governance and quality.</div></div>
+    <div class="profile-metric"><div class="k">Identity 3</div><div class="v">Real-Estate Native</div><div class="d">PropTech-native support where value compounds through industry specialization.</div></div>
+  </div>
+
+  <div class="grid-2 fade-up d2" style="margin-bottom:12px;">
+    <div class="insight-card" style="border-left-color:var(--purple);">
+      <h4 style="color:var(--purple);">Why Kosovo Works</h4>
+      <p>Kosovo strengthens feasibility for multilingual operations, accounting execution, onboarding services, and selected technical delivery. The core proposition is governed, cost-rational extension teams for a specialized DACH real-estate niche.</p>
+    </div>
+    <div class="insight-card" style="border-left-color:var(--gold);">
+      <h4 style="color:var(--gold);">Backed By Modium Holding</h4>
+      <p>Spectra states it is backed by Modium's 18 years of expertise and 150+ architectural projects, carrying forward a precision-oriented operating culture.</p>
+    </div>
+  </div>
+
+  <div class="grid-2 fade-up d3" style="margin-top:12px;">
+    <div class="insight-card" style="border-left-color:var(--accent);">
+      <h4 style="color:var(--accent);">I. Managed Team Infrastructure</h4>
+      <p>Employer-of-record backbone for recruitment, compliance, payroll, and HR operations. Why it matters: faster activation without early foreign-employment setup friction.</p>
+    </div>
+    <div class="insight-card" style="border-left-color:var(--gold);">
+      <h4 style="color:var(--gold);">II. Platform Onboarding, Master Data & Data Operations</h4>
+      <p>Operational readiness for onboarding and migration, not basic data entry. Why it matters: reduces errors that impact reporting, invoicing, and platform trust.</p>
+    </div>
+    <div class="insight-card" style="border-left-color:var(--green);">
+      <h4 style="color:var(--green);">III. Accounting & Bookkeeping Support</h4>
+      <p>Recurring bookkeeping, reconciliations, VAT processing, and closings. Why it matters: absorbs repeatable, quality-sensitive load that constrains local teams.</p>
+    </div>
+    <div class="insight-card" style="border-left-color:var(--purple);">
+      <h4 style="color:var(--purple);">IV. Analytics, Development & Workflow Intelligence</h4>
+      <p>Long-term, industry-specific expansion layer. Why it matters: becomes credible after repeated workflow knowledge and trusted delivery are established.</p>
+    </div>
+  </div>
+
+  <div class="evidence-footer fade-up d5">
+    <span>Source: https://www.spectra.support/ and /about (captured 2026-04-13)</span>
+    <span>Date: 2026-04-13</span>
+    <span>Confidence: Medium (published marketing claims, validate in intro call)</span>
+  </div>
+</div>
+
+<!-- --------------- MODULES TAB --------------- -->
+<div id="tab-modules" class="tab-panel">
+  <div class="fade-up" style="font-size:11px;font-weight:700;color:var(--accent);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:10px;">Capera Prioritized Service Bands</div>
+  <div class="score-grid fade-up d2">
+    <div class="score-card">
+      <div class="score-title" style="color:#4F8EF7;">Band A · Finance Ops</div>
+      <div class="score-row"><span>Urgency</span><strong>5/5</strong></div>
+      <div class="score-row"><span>Repeatability</span><strong>5/5</strong></div>
+      <div class="score-row"><span>Integration Effort</span><strong>3/5</strong></div>
+      <div class="score-row"><span>Compliance Risk</span><strong>4/5</strong></div>
+      <div class="score-row"><span>Expected Impact</span><strong>High</strong></div>
+    </div>
+    <div class="score-card">
+      <div class="score-title" style="color:#F5A623;">Band B · Platform/Data Ops</div>
+      <div class="score-row"><span>Urgency</span><strong>4/5</strong></div>
+      <div class="score-row"><span>Repeatability</span><strong>4/5</strong></div>
+      <div class="score-row"><span>Integration Effort</span><strong>4/5</strong></div>
+      <div class="score-row"><span>Compliance Risk</span><strong>3/5</strong></div>
+      <div class="score-row"><span>Expected Impact</span><strong>High</strong></div>
+    </div>
+    <div class="score-card">
+      <div class="score-title" style="color:#34D399;">Band C · Tenant L1/L2</div>
+      <div class="score-row"><span>Urgency</span><strong>4/5</strong></div>
+      <div class="score-row"><span>Repeatability</span><strong>4/5</strong></div>
+      <div class="score-row"><span>Integration Effort</span><strong>3/5</strong></div>
+      <div class="score-row"><span>Compliance Risk</span><strong>3/5</strong></div>
+      <div class="score-row"><span>Expected Impact</span><strong>Medium-High</strong></div>
+    </div>
+  </div>
+  <div class="grid-3 fade-up d2" style="margin-bottom:12px;">
+    <div class="profile-metric"><div class="k">Capera Goal</div><div class="v">Execution Relief</div><div class="d">Move repetitive load off local specialists so they focus on exceptions and client decisions.</div></div>
+    <div class="profile-metric"><div class="k">Capera Goal</div><div class="v">Service Stability</div><div class="d">Maintain response quality and throughput across recurring peak windows.</div></div>
+    <div class="profile-metric"><div class="k">Capera Goal</div><div class="v">Governed Scale</div><div class="d">Expand only after pilot evidence confirms value and control integrity.</div></div>
+  </div>
+  <div class="modules-layout">
+    <div>
+      <div class="section-label" style="padding-left:4px;">Prioritized Service Bands</div>
+      <div class="module-list" id="module-list"></div>
+    </div>
+    <div id="module-detail"></div>
+  </div>
+</div>
+
+<!-- --------------- TIMELINE TAB --------------- -->
+<div id="tab-timeline" class="tab-panel">
+  <div class="timeline-container fade-up">
+    <div style="font-size:11px;font-weight:700;color:var(--accent);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:4px;">Capera Pilot Proposal</div>
+    <div style="font-size:20px;font-weight:700;color:var(--text);margin-bottom:4px;font-family:'DM Sans',sans-serif;">Controlled Rollout With Decision Gates</div>
+    <div style="font-size:12px;color:var(--text-muted);margin-bottom:24px;">One scoped workload slice, measurable governance, then scale/stop decision</div>
+
+    <div class="charter-grid fade-up d2">
+      <div class="charter-card">
+        <h5>In Scope</h5>
+        <p>One service band, one defined workflow slice, baseline KPI pack, and weekly governance review.</p>
+      </div>
+      <div class="charter-card">
+        <h5>Out Of Scope</h5>
+        <p>Policy decisions, legal actions, authority transfer, and unapproved multi-band expansion.</p>
+      </div>
+      <div class="charter-card">
+        <h5>Go Criteria</h5>
+        <p>Cycle-time improvement, SLA stability, quality reliability, and governance fit versus baseline.</p>
+      </div>
+      <div class="charter-card">
+        <h5>Rollback Criteria</h5>
+        <p>Repeated SLA breach, unresolved compliance gap, or governance failure triggers immediate fallback to Capera-led execution.</p>
+      </div>
+    </div>
+
+    <div class="timeline-bar">
+      <div style="flex:2;background:var(--accent);"></div>
+      <div style="flex:3;background:var(--gold);"></div>
+      <div style="flex:3;background:var(--green);"></div>
+      <div style="flex:1;background:var(--orange);"></div>
+    </div>
+
+    <div class="phase-card fade-up d1" style="background:rgba(79,142,247,0.04);border-color:var(--accent);border:1px solid rgba(79,142,247,0.15);">
+      <div class="phase-week" style="color:var(--accent);">Wk 1–2</div>
+      <div><div class="phase-name">Scope & Baseline</div><div class="phase-desc">Finalize workflow boundaries, governance roles, access, and baseline metrics.</div></div>
+      <div class="phase-icon" style="background:rgba(79,142,247,0.12);">🎯</div>
+    </div>
+    <div class="phase-card fade-up d2" style="background:rgba(167,139,250,0.04);border-color:var(--purple);border:1px solid rgba(167,139,250,0.15);">
+      <div class="phase-week" style="color:var(--gold);">Wk 3–6</div>
+      <div><div class="phase-name">Run Controlled Pilot</div><div class="phase-desc">Execute with QA controls, escalation discipline, and weekly KPI review.</div></div>
+      <div class="phase-icon" style="background:rgba(245,166,35,0.12);">🔗</div>
+    </div>
+    <div class="phase-card fade-up d3" style="background:rgba(52,211,153,0.04);border-color:var(--green);border:1px solid rgba(52,211,153,0.15);">
+      <div class="phase-week" style="color:var(--green);">Wk 7–8</div>
+      <div><div class="phase-name">Review & Decide</div><div class="phase-desc">Compare pilot output vs go criteria and decide scale / adjust / stop.</div></div>
+      <div class="phase-icon" style="background:rgba(251,146,60,0.12);">📋</div>
+    </div>
+
+    <div class="success-box fade-up d4">
+      <div class="success-label">Capera Decision Pack: Pilot Success Criteria</div>
+      <div class="grid-2">
+        <div class="success-item"><span style="color:var(--green);font-weight:700;">✓</span> Measurable cycle-time reduction vs baseline</div>
+        <div class="success-item"><span style="color:var(--green);font-weight:700;">✓</span> Stable SLA performance in scoped workload slice</div>
+        <div class="success-item"><span style="color:var(--green);font-weight:700;">✓</span> Lower backlog age and fewer rework loops</div>
+        <div class="success-item"><span style="color:var(--green);font-weight:700;">✓</span> Documented governance fit and escalation clarity</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- --------------- TEAM ROSTER TAB --------------- -->
+<div id="tab-team" class="tab-panel">
+  <div class="fade-up" style="margin-bottom:20px;">
+    <div style="font-size:11px;font-weight:700;color:var(--accent);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:4px;">Appendix</div>
+    <div style="font-size:20px;font-weight:700;color:var(--text);margin-bottom:4px;font-family:'DM Sans',sans-serif;">Capability Archetypes (If Requested)</div>
+    <div style="font-size:12px;color:var(--text-muted);margin-bottom:0;">For follow-up planning after intro alignment; not a first-meeting commitment.</div>
+  </div>
+
+  <!-- Summary stats -->
+  <div class="grid-3 fade-up d1" style="margin-bottom:20px;">
+    <div class="stat-card"><div class="stat-icon">👥</div><div class="stat-value">Archetype A</div><div class="stat-label">Finance Operations Focus</div></div>
+    <div class="stat-card"><div class="stat-icon">🎯</div><div class="stat-value">Archetype B</div><div class="stat-label">Platform/Data Ops Focus</div></div>
+    <div class="stat-card"><div class="stat-icon">📈</div><div class="stat-value">Archetype C</div><div class="stat-label">Tenant Support Focus</div></div>
+  </div>
+
+  <!-- Role cards -->
+  <div id="team-roles" class="fade-up d2"></div>
+
+  <div class="mini-table fade-up d3">
+    <div class="row head">
+      <div>Capability Matrix</div><div>Band A</div><div>Band B</div><div>Band C</div><div>Owner</div>
+    </div>
+    <div class="row">
+      <div>Execution Throughput</div><div>High</div><div>High</div><div>Medium</div><div>Spectra</div>
+    </div>
+    <div class="row">
+      <div>Policy / Decision Rights</div><div>Capera</div><div>Capera</div><div>Capera</div><div>Capera</div>
+    </div>
+    <div class="row">
+      <div>QA + Governance Reporting</div><div>Shared</div><div>Shared</div><div>Shared</div><div>Joint</div>
+    </div>
+  </div>
+
+  <!-- Language note -->
+  <div class="fade-up d6" style="margin-top:20px;padding:16px;border-radius:12px;background:rgba(245,166,35,0.06);border:1px solid rgba(245,166,35,0.15);">
+    <div style="font-size:11px;font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:1px;margin-bottom:6px;">⚠ Language & Compliance Requirements</div>
+    <div class="grid-2" style="gap:12px;">
+      <div style="font-size:12px;color:var(--text-muted);line-height:1.6;">
+        <strong style="color:var(--text);">German language:</strong> Required for Band A (debtor correspondence/dunning) and Band C (tenant-facing). Recommended B2+ for Band A and C1 for Band C. Band B can operate in English with German B1+ for system labels and documentation.
+      </div>
+      <div style="font-size:12px;color:var(--text-muted);line-height:1.6;">
+        <strong style="color:var(--text);">GDPR:</strong> All team members must complete GDPR processor training before go-live. Spectra operates as data processor under Art. 28 GDPR. Role-based access controls and audit logging mandatory across all three prioritized bands.
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- --------------- COMPARISON TAB --------------- -->
+<div id="tab-comparison" class="tab-panel">
+  <div class="comp-table fade-up">
+    <div class="comp-header">
+      <h3>Capera Problem Framing: Where Operations Need Relief</h3>
+      <span>Pressure map to prioritize partner-supported execution lanes</span>
+    </div>
+    <div class="comp-cols comp-cols-head">
+      <div>Service Band</div><div style="text-align:center;">Priority</div><div>Pain Signal</div><div>Extension Opportunity</div><div>KPI Signal</div>
+    </div>
+    <div id="comp-rows"></div>
+  </div>
+  <div class="mini-table fade-up d2">
+    <div class="row head">
+      <div>Band</div><div>Frequency</div><div>Impact</div><div>Risk</div><div>Current Workaround Cost</div>
+    </div>
+    <div class="row">
+      <div>Band A: Finance Ops</div><div>Daily + 2x monthly peaks</div><div>High</div><div>Error / delay propagation</div><div>Specialist time diversion</div>
+    </div>
+    <div class="row">
+      <div>Band B: Platform/Data Ops</div><div>Wave-based, recurring</div><div>High</div><div>Go-live delay</div><div>Manual cleanup overhead</div>
+    </div>
+    <div class="row">
+      <div>Band C: Tenant L1/L2</div><div>Continuous multi-channel</div><div>Medium-High</div><div>SLA / CX erosion</div><div>Queue and escalation burden</div>
+    </div>
+  </div>
+</div>
+
+<!-- --------------- MARKET TAB --------------- -->
+<div id="tab-market" class="tab-panel">
+  <div class="section-label fade-up">Market Context Appendix</div>
+  <div class="grid-3 fade-up d1" style="margin-bottom:16px;">
+    <div class="stat-card"><div class="stat-icon">⚠️</div><div class="stat-value">70%</div><div class="stat-label">Firms reporting workload overload</div></div>
+    <div class="stat-card"><div class="stat-icon">📚</div><div class="stat-value">98%</div><div class="stat-label">Expect rising training/compliance pressure</div></div>
+    <div class="stat-card"><div class="stat-icon">💻</div><div class="stat-value">7.2%→8.1%</div><div class="stat-label">IT spend trend (2024→2025 planned)</div></div>
+  </div>
+
+  <div class="grid-2 fade-up d2">
+    <div class="insight-card" style="border-left-color:var(--red);">
+      <h4 style="color:var(--red);">Regulatory Clocks</h4>
+      <p>Annual billing deadlines, WEG governance cycles, and compliance documentation create recurring throughput peaks.</p>
+    </div>
+    <div class="insight-card" style="border-left-color:var(--green);">
+      <h4 style="color:var(--green);">Operational Implication</h4>
+      <p>The core risk is capacity bottlenecks in repeatable workflows, which makes extension support commercially and operationally relevant.</p>
+    </div>
+  </div>
+</div>
+
+</div><!-- /content -->
+
+<script>
+// --- DATA ---
+const MODULES = [
+  { id:"1", name:"Accounting + Receivables Band", short:"Finance Operations Band", icon:"📘", color:"#4F8EF7",
+    band:"Finance Operations Band",
+    timeline:"4–6 weeks",
+    staff:"Proposed pilot capacity range for recurring AP/AR and dunning execution (to be confirmed in kickoff).",
+    painPoints:["Capera runs two dunning cycles per month and needs consistent throughput","Month-end closings and AP/AR posting spikes collide with recurring reminders","Installment plans and debtor follow-up require disciplined case tracking","Deposit accounting and VAT prep are repetitive but high-risk for errors","Manual document indexing slows down accounting execution"],
+    capera:["Accounting policy, legal ownership, and client-signoff authority","Final decision on escalations, settlements, and legal handover","Tax advisor relationship and statutory responsibility"],
+    spectra:["Daily AP/AR posting and ledger reconciliation","Month-end support packs and close-cycle execution","Two monthly dunning runs with reminder sequencing and callback logs","Installment-plan setup, monitoring, and breach flagging","Debtor case administration and pre-legal dossier preparation (no legal advice)","Digital accounting document capture, coding, and indexing"],
+    kpis:["Posting accuracy (errors per 1,000)","Month-end close cycle time","Dunning run completion on schedule (2x/month)","Cure rate before legal escalation","Average days delinquent","Invoice/document processing throughput"],
+    risks:["Escalation authority boundaries must be explicit for debtor cases","Tone consistency needed to protect tenant relationship"],
+    pricing:["Decision checkpoint: confirm workload slice and decision rights","Decision checkpoint: map system access and handoff boundaries","Decision checkpoint: define KPI baseline before pilot"]},
+  { id:"2", name:"Platform Onboarding & Data Ops Band", short:"Onboarding + Technical Admin Band", icon:"💻", color:"#F5A623",
+    band:"Digital Operations Band",
+    timeline:"6–10 weeks",
+    staff:"Proposed pilot capacity range for onboarding, migration, and platform operations support.",
+    painPoints:["New mandates and takeovers create recurring onboarding and migration waves","Cross-system master data quality is inconsistent and labor-intensive to clean","Digital file completeness impacts both accounting and technical PM execution","Technical PM admin workflows need structured dispatch and tracking support","Template/report mapping is fragmented across assets and investor formats"],
+    capera:["System ownership, security policy, and final platform decisions","Target operating model for technical PM and reporting","Approval authority for go-live and migration signoff"],
+    spectra:["Platform onboarding setup, user/account provisioning, and checklist execution","Data migration and validation for tenant, contract, meter, and vendor records","Digital file structuring, document indexing, and master-data hygiene","Technical PM admin support: work-order intake, routing, status updates, and coordination","Report/template mapping and data-reconciliation support","Swiss-market playbook transfer from Imotop/Remo workflows adapted to Capera systems"],
+    kpis:["Onboarding lead time (mandate to operational readiness)","Migration accuracy and reconciliation pass rate","Required-field data completeness","Technical admin dispatch turnaround","Data issue backlog aging"],
+    risks:["System access provisioning delays from IT/security dependencies","Source data inconsistency can delay go-live"],
+    pricing:["Decision checkpoint: confirm onboarding/error backlog profile","Decision checkpoint: validate source-data and access dependencies","Decision checkpoint: agree pilot cut-over criteria"]},
+  { id:"3", name:"Tenant Management L1/L2 Support Band", short:"Omnichannel Tenant Support Band", icon:"🎧", color:"#34D399",
+    band:"Customer Operations Band",
+    timeline:"4–8 weeks",
+    staff:"Proposed pilot capacity range for multi-channel intake, triage, and escalation support.",
+    painPoints:["Inbound tenant volume across channels creates queue pressure","Appointment scheduling and callback handling consume local specialist time","Escalation handovers are inconsistent without structured triage","Service-hour gaps can undermine Capera's personal-contact promise","Documentation quality varies across phone, email, and portal interactions"],
+    capera:["Brand ownership and final authority for complex/sensitive cases","Policy decisions on concessions, legal steps, and exceptional approvals","Relationship management with owners and key tenant stakeholders"],
+    spectra:["L1/L2 support via phone, email, and portal with Capera-approved scripts","Appointment scheduling and calendar coordination","Defect intake triage and escalation routing to responsible teams","Case logging, follow-up tracking, and callback management","Communication documentation and service-level monitoring","Queue balancing and overflow coverage during seasonal peaks"],
+    kpis:["First response time by channel","First-contact resolution rate","Escalation turnaround time","Scheduling completion rate","Tenant satisfaction/pulse score","Open-ticket aging profile"],
+    risks:["German language quality must stay at tenant-facing standard","Escalation playbooks must be tightly aligned with Capera policy"],
+    pricing:["Decision checkpoint: map channel volume and response targets","Decision checkpoint: define escalation matrix and QA checks","Decision checkpoint: align pilot service-window assumptions"]}
+];
+
+const COMPARISON = [
+  {service:"Accounting + AP/AR",modules:"High",capera:"Recurring posting/reconciliation workload and month-end pressure",spectra:"Execution support for repetitive accounting cycles",kpis:"Close cycle · Posting accuracy · Backlog age"},
+  {service:"Receivables + Dunning",modules:"High",capera:"Two monthly dunning runs and follow-up administration",spectra:"Pipeline operations and documented case progression",kpis:"Cure rate · Days delinquent · Run timeliness"},
+  {service:"Platform Onboarding",modules:"High",capera:"New mandates create setup and migration coordination load",spectra:"Structured onboarding and setup-readiness support",kpis:"Onboarding lead time · Error rate"},
+  {service:"Data Migration + Hygiene",modules:"High",capera:"Data quality debt slows operations and reporting",spectra:"Validation, cleanup, and completeness operations",kpis:"Data completeness · Reconciliation breaks"},
+  {service:"Technical Workflow Admin",modules:"Medium",capera:"Dispatch/tracking administration competes with specialist time",spectra:"Operational routing and status-management support",kpis:"Dispatch turnaround · Open-item aging"},
+  {service:"Tenant L1/L2 Support",modules:"Medium",capera:"Response-time pressure across channels and escalations",spectra:"Structured intake, triage, and escalation support",kpis:"First response time · Escalation SLA"}
+];
+
+// --- TAB SWITCHING ---
+document.querySelectorAll('.tab-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById('tab-' + btn.dataset.tab).classList.add('active');
+    // Re-trigger animations
+    document.getElementById('tab-' + btn.dataset.tab).querySelectorAll('.fade-up').forEach(el => {
+      el.style.animation = 'none'; el.offsetHeight; el.style.animation = '';
+    });
+  });
+});
+
+// --- MODULE LIST ---
+let selectedModule = '1';
+
+function renderModuleList() {
+  const list = document.getElementById('module-list');
+  list.innerHTML = MODULES.map(m => `
+    <div class="module-item ${m.id === selectedModule ? 'active' : ''}" data-id="${m.id}" style="${m.id === selectedModule ? 'border-color:'+m.color+';background:'+m.color+'0F;' : ''}">
+      <div class="module-icon" style="background:${m.color}20;">${m.icon}</div>
+      <div style="min-width:0;">
+        <div style="display:flex;align-items:center;gap:6px;">
+          <span class="module-tag" style="background:${m.color};">${m.id}</span>
+          <span class="module-name" style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${m.name}</span>
+        </div>
+        <div class="module-short">${m.short}</div>
+      </div>
+    </div>
+  `).join('');
+  list.querySelectorAll('.module-item').forEach(item => {
+    item.addEventListener('click', () => { selectedModule = item.dataset.id; renderModuleList(); renderModuleDetail(); });
+  });
+}
+
+function renderModuleDetail() {
+  const m = MODULES.find(x => x.id === selectedModule);
+  const el = document.getElementById('module-detail');
+  el.innerHTML = `
+    <div class="module-detail fade-up" style="background:linear-gradient(180deg,${m.color}08,transparent);">
+      <div class="module-detail-header">
+        <div class="module-detail-icon" style="background:${m.color}25;">${m.icon}</div>
+        <div style="flex:1;">
+          <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
+            <div class="module-detail-title" style="color:var(--text);">Band ${m.id}: ${m.name}</div>
+          </div>
+          <div style="font-size:11px;color:var(--text-muted);margin-top:2px;margin-bottom:6px;font-style:italic;">${m.band}</div>
+          <div class="module-meta">
+            <span style="color:${m.color};background:${m.color}15;">⏱ ${m.timeline}</span>
+          </div>
+        </div>
+      </div>
+      <div style="background:rgba(42,54,84,0.25);border:1px solid var(--border);border-radius:8px;padding:10px 14px;margin-bottom:16px;">
+        <div style="font-size:10px;font-weight:700;color:var(--text-dim);text-transform:uppercase;letter-spacing:1px;margin-bottom:6px;">👤 Proposed Pilot Capacity</div>
+        <div style="font-size:12px;color:var(--text);line-height:1.6;">${m.staff}</div>
+      </div>
+      <div class="detail-tabs">
+        <button class="detail-tab active" data-dtab="pains">Pain Points</button>
+        <button class="detail-tab" data-dtab="overview">Capera Ownership ↔ Partner Delivery</button>
+        <button class="detail-tab" data-dtab="kpis">KPIs</button>
+        <button class="detail-tab" data-dtab="risks">Risks</button>
+        <button class="detail-tab" data-dtab="pricing">Decision Notes</button>
+      </div>
+      <div class="detail-section active" id="ds-pains">
+        ${m.painPoints.map(p => `<div style="font-size:12px;color:var(--text);padding:8px 12px;margin-bottom:6px;background:rgba(248,113,113,0.05);border:1px solid rgba(248,113,113,0.12);border-radius:8px;display:flex;gap:8px;line-height:1.5;"><span style="color:var(--red);flex-shrink:0;font-weight:700;">▸</span>${p}</div>`).join('')}
+      </div>
+      <div class="detail-section" id="ds-overview">
+        <div class="split-cols">
+          <div>
+            <div class="col-label" style="color:var(--gold);">Capera Ownership</div>
+            ${m.capera.map(c => `<div class="col-item"><span style="color:var(--gold);flex-shrink:0;">›</span> ${c}</div>`).join('')}
+          </div>
+          <div>
+            <div class="col-label" style="color:var(--accent);">Partner Delivery Scope</div>
+            ${m.spectra.map(s => `<div class="col-item"><span style="color:var(--accent);flex-shrink:0;">+</span> ${s}</div>`).join('')}
+          </div>
+        </div>
+      </div>
+      <div class="detail-section" id="ds-kpis">
+        <div class="kpi-grid">
+          ${m.kpis.map(k => `<div class="kpi-item" style="background:${m.color}08;border:1px solid ${m.color}20;"><div class="kpi-dot" style="background:${m.color};"></div>${k}</div>`).join('')}
+        </div>
+      </div>
+      <div class="detail-section" id="ds-risks">
+        ${m.risks.map(r => `<div class="risk-item"><span style="color:var(--red);font-weight:700;flex-shrink:0;">⚡</span> ${r}</div>`).join('')}
+      </div>
+      <div class="detail-section" id="ds-pricing">
+        ${m.pricing.map(p => `<div class="price-item"><span style="color:var(--green);font-weight:700;flex-shrink:0;">i</span> ${p}</div>`).join('')}
+      </div>
+    </div>
+  `;
+  el.querySelectorAll('.detail-tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+      el.querySelectorAll('.detail-tab').forEach(t => t.classList.remove('active'));
+      el.querySelectorAll('.detail-section').forEach(s => s.classList.remove('active'));
+      tab.classList.add('active');
+      document.getElementById('ds-' + tab.dataset.dtab).classList.add('active');
+    });
+  });
+}
+
+// --- COMPARISON ROWS ---
+function renderComparison() {
+  document.getElementById('comp-rows').innerHTML = COMPARISON.map((r, i) => `
+    <div class="comp-row">
+      <div class="comp-service">${r.service}</div>
+      <div class="comp-modules"><span>${r.modules}</span></div>
+      <div class="comp-capera">${r.capera}</div>
+      <div class="comp-spectra">${r.spectra}</div>
+      <div class="comp-kpis">${r.kpis}</div>
+    </div>
+  `).join('');
+}
+
+// --- TEAM ROSTER ---
+const TEAM_ROLES = [
+  { role:"Accounting & Receivables Archetype", count:"Indicative", type:"Core", color:"#4F8EF7",
+    bands:["Band A: Accounting","Band A: Receivables/Dunning"],
+    tasks:["Daily AP/AR posting and ledger reconciliation","Month-end close support packs and exception logging","Execution support for two monthly dunning runs","Installment-plan tracking and breach flagging","Debtor case administration and callback coordination","Accounting document capture, coding, and indexing"],
+    skills:["German accounting standards (HGB basics)","ERP proficiency (iX-Haus, Wodis, Domus, SAP RE or equivalent)","German language B2+ for debtor/accounting communication","High accuracy under recurring volume cycles"],
+    scaleNote:"Validation note: volume and cadence to be confirmed with Capera" },
+  { role:"Platform & Data Operations Archetype", count:"Indicative", type:"Specialist", color:"#F5A623",
+    bands:["Band B: Platform Onboarding","Band B: Data Migration","Band B: Technical Admin Ops"],
+    tasks:["Onboarding setup: users, accounts, rights, and rollout checklists","Data migration and reconciliation for master records","Data-entry and digital file quality controls","Technical PM workflow administration (intake/routing/status)","Template/report mapping for investor and internal reporting","Playbook transfer from Imotop/Remo operating patterns to Capera tooling"],
+    skills:["Platform onboarding and migration experience","Strong Excel/data tooling; SQL basics preferred","Process discipline for data quality and auditability","English fluency + German B1+ for labels/docs"],
+    scaleNote:"Validation note: cut-over complexity depends on system/data readiness" },
+  { role:"Tenant L1/L2 Support Archetype", count:"Indicative", type:"Core", color:"#34D399",
+    bands:["Band C: Tenant L1/L2 Support"],
+    tasks:["L1/L2 response handling across phone, email, and portal","Appointment scheduling and follow-up confirmations","Triage and escalation routing to Capera teams","Communication logging and case-history maintenance","Callback queue handling and SLA monitoring","Overflow coverage during high-contact periods"],
+    skills:["German C1 for tenant-facing verbal and written communication","Customer service quality aligned to Capera brand tone","Ticketing/CRM workflow familiarity","Escalation discipline and clear handover writing"],
+    scaleNote:"Validation note: channel volumes and SLA targets to be confirmed" }
+];
+
+function renderTeamRoster() {
+  const el = document.getElementById('team-roles');
+  el.innerHTML = TEAM_ROLES.map((r, i) => `
+    <div style="background:var(--card);border:1px solid var(--border);border-radius:14px;padding:20px;margin-bottom:12px;border-left:4px solid ${r.color};">
+      <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:14px;">
+        <div>
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px;">
+            <span style="font-size:16px;font-weight:800;color:${r.color};font-family:'DM Sans',sans-serif;">${r.count}</span>
+            <span style="font-size:15px;font-weight:700;color:var(--text);">${r.role}</span>
+            <span style="font-size:10px;font-weight:700;padding:2px 8px;border-radius:4px;background:${r.type==='Core'?'rgba(52,211,153,0.12)':r.type==='Specialist'?'rgba(167,139,250,0.12)':'rgba(251,146,60,0.12)'};color:${r.type==='Core'?'var(--green)':r.type==='Specialist'?'var(--purple)':'var(--orange)'};">${r.type}</span>
+          </div>
+          <div style="display:flex;gap:6px;flex-wrap:wrap;">
+            ${r.bands.map(b => `<span style="font-size:10px;color:var(--text-muted);background:rgba(42,54,84,0.4);padding:2px 8px;border-radius:4px;">${b}</span>`).join('')}
+          </div>
+        </div>
+        <div style="font-size:11px;color:var(--gold);background:rgba(245,166,35,0.08);border:1px solid rgba(245,166,35,0.12);border-radius:6px;padding:4px 10px;max-width:300px;line-height:1.4;flex-shrink:0;">
+          📈 ${r.scaleNote}
+        </div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+        <div>
+          <div style="font-size:10px;font-weight:700;color:var(--text-dim);text-transform:uppercase;letter-spacing:1px;margin-bottom:6px;">Key Tasks</div>
+          ${r.tasks.map(t => `<div style="font-size:11px;color:var(--text-muted);padding:3px 0;display:flex;gap:6px;line-height:1.4;"><span style="color:${r.color};flex-shrink:0;">›</span>${t}</div>`).join('')}
+        </div>
+        <div>
+          <div style="font-size:10px;font-weight:700;color:var(--text-dim);text-transform:uppercase;letter-spacing:1px;margin-bottom:6px;">Required Skills</div>
+          ${r.skills.map(s => `<div style="font-size:11px;color:var(--text-muted);padding:3px 0;display:flex;gap:6px;line-height:1.4;"><span style="color:var(--accent);flex-shrink:0;">✦</span>${s}</div>`).join('')}
+        </div>
+      </div>
+    </div>
+  `).join('');
+}
+
+// --- INIT ---
+renderModuleList();
+renderModuleDetail();
+renderComparison();
+renderTeamRoster();
+</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+

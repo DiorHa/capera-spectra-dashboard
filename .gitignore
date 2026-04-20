@@ -1,0 +1,11 @@
+# Capera × Spectra Dashboard
+
+Static dashboard prototype for the Capera/Spectra partnership analysis.
+
+## Main file
+- capera-spectra-dashboard_4_three-pods.html
+"@ | Set-Content -Path README.md
+@"
+_whitepaper_extract/
+whitepaper_lines.txt
+*.docx
