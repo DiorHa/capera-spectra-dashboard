@@ -969,9 +969,9 @@ body.auth-locked #auth-gate { display: flex; }
 <!-- --------------- SPECTRA PROFILE TAB --------------- -->
 <div id="tab-spectra" class="tab-panel">
   <div class="spectra-anchor fade-up">
-    <h3>🚀 Spectra Fit from Capera’s Perspective</h3>
-    <p>Spectra operates as a specialized nearshore extension for the DACH real estate and PropTech ecosystem.</p>
-    <div class="spectra-subtext">Positioned for dedicated, governed extension teams instead of broad outsourcing.</div>
+    <h3>🚀 Potential Spectra Fit for This Modality</h3>
+    <p>Spectra may be considered as a nearshore extension option for selected DACH real-estate and PropTech workflows.</p>
+    <div class="spectra-subtext">This framing is directional and intended for validation during initial scoping discussions.</div>
   </div>
 
   <div class="section-label fade-up d1">Core Differentiators</div>
@@ -1002,12 +1002,15 @@ body.auth-locked #auth-gate { display: flex; }
   <div class="section-label fade-up d2">Operational Foundation</div>
   <div class="grid-2 fade-up d2" style="margin-bottom:12px;">
     <div class="spectra-foundation">
-      <h4 style="color:var(--purple);">Why Kosovo Works</h4>
-      <p>Kosovo strengthens feasibility for multilingual operations, accounting execution, onboarding services, and selected technical delivery. The core proposition is governed, cost-rational extension teams for a specialized DACH real-estate niche.</p>
+      <h4 style="color:var(--purple);">Spectra Delivery Base</h4>
+      <div style="display:flex;gap:12px;align-items:flex-start;">
+        <img src="./kosovo.png" alt="Kosovo delivery base map" style="width:72px;height:72px;object-fit:contain;border-radius:10px;border:1px solid var(--border);background:#fff;padding:6px;flex-shrink:0;">
+        <p>Spectra delivers from Kosovo, leveraging geographic proximity to DACH markets, a young talent base, and multilingual operations to support accounting, onboarding, and technical workflows.</p>
+      </div>
     </div>
     <div class="spectra-foundation">
-      <h4 style="color:var(--gold);">Backed By Modium Holding</h4>
-      <p>Spectra states it is backed by Modium's 18 years of expertise and 150+ architectural projects, carrying forward a precision-oriented operating culture.</p>
+      <h4 style="color:var(--gold);">Backed by Modium Holding</h4>
+      <p>Spectra is built on Modium's 18 years of experience and 150+ architectural projects, reinforcing delivery discipline.</p>
     </div>
   </div>
 
@@ -1232,9 +1235,9 @@ const MODULES = [
     staff:"Proposed pilot capacity range for recurring AP/AR and dunning execution (to be confirmed in kickoff).",
     painPoints:["Capera runs two dunning cycles per month and needs consistent throughput","Month-end closings and AP/AR posting spikes collide with recurring reminders","Installment plans and debtor follow-up require disciplined case tracking","Deposit accounting and VAT prep are repetitive but high-risk for errors","Manual document indexing slows down accounting execution"],
     capera:["Accounting policy, legal ownership, and client-signoff authority","Final decision on escalations, settlements, and legal handover","Tax advisor relationship and statutory responsibility"],
-    spectra:["Daily AP/AR posting and ledger reconciliation","Month-end support packs and close-cycle execution","Two monthly dunning runs with reminder sequencing and callback logs","Installment-plan setup, monitoring, and breach flagging","Debtor case administration and pre-legal dossier preparation (no legal advice)","Digital accounting document capture, coding, and indexing"],
+    spectra:["Daily AP/AR posting and ledger reconciliation","Month-end support packs and close-cycle execution","Two monthly dunning runs with reminder sequencing and callback logs","Digital accounting document capture, coding, and indexing"],
     kpis:["Posting accuracy (errors per 1,000)","Month-end close cycle time","Dunning run completion on schedule (2x/month)","Cure rate before legal escalation","Average days delinquent","Invoice/document processing throughput"],
-    risks:["Escalation authority boundaries must be explicit for debtor cases","Tone consistency needed to protect tenant relationship"],
+    risks:["Tone consistency needed to protect tenant relationship"],
     pricing:["Decision checkpoint: confirm workload slice and decision rights","Decision checkpoint: map system access and handoff boundaries","Decision checkpoint: define KPI baseline before pilot"]},
   { id:"2", name:"Platform Onboarding & Data Ops Band", short:"Onboarding + Technical Admin Band", icon:"💻", color:"#F5A623",
     band:"Digital Operations Band",
@@ -1242,7 +1245,7 @@ const MODULES = [
     staff:"Proposed pilot capacity range for onboarding, migration, and platform operations support.",
     painPoints:["New mandates and takeovers create recurring onboarding and migration waves","Cross-system master data quality is inconsistent and labor-intensive to clean","Digital file completeness impacts both accounting and technical PM execution","Technical PM admin workflows need structured dispatch and tracking support","Template/report mapping is fragmented across assets and investor formats"],
     capera:["System ownership, security policy, and final platform decisions","Target operating model for technical PM and reporting","Approval authority for go-live and migration signoff"],
-    spectra:["Platform onboarding setup, user/account provisioning, and checklist execution","Data migration and validation for tenant, contract, meter, and vendor records","Digital file structuring, document indexing, and master-data hygiene","Technical PM admin support: work-order intake, routing, status updates, and coordination","Report/template mapping and data-reconciliation support","Swiss-market playbook transfer from Imotop/Remo workflows adapted to Capera systems"],
+    spectra:["Platform onboarding setup, user/account provisioning, and checklist execution","Data migration and validation for tenant, contract, meter, and vendor records","Digital file structuring, document indexing, and master-data hygiene","Technical PM admin support: work-order intake, routing, status updates, and coordination","Report/template mapping and data-reconciliation support","Swiss-market playbook transfer from Imotop/RIMO workflows adapted to Capera systems"],
     kpis:["Onboarding lead time (mandate to operational readiness)","Migration accuracy and reconciliation pass rate","Required-field data completeness","Technical admin dispatch turnaround","Data issue backlog aging"],
     risks:["System access provisioning delays from IT/security dependencies","Source data inconsistency can delay go-live"],
     pricing:["Decision checkpoint: confirm onboarding/error backlog profile","Decision checkpoint: validate source-data and access dependencies","Decision checkpoint: agree pilot cut-over criteria"]},
@@ -1391,7 +1394,7 @@ const TEAM_ROLES = [
     scaleNote:"Validation note: volume and cadence to be confirmed with Capera" },
   { role:"Platform & Data Operations Archetype", count:"Indicative", type:"Specialist", color:"#F5A623",
     bands:["Band B: Platform Onboarding","Band B: Data Migration","Band B: Technical Admin Ops"],
-    tasks:["Onboarding setup: users, accounts, rights, and rollout checklists","Data migration and reconciliation for master records","Data-entry and digital file quality controls","Technical PM workflow administration (intake/routing/status)","Template/report mapping for investor and internal reporting","Playbook transfer from Imotop/Remo operating patterns to Capera tooling"],
+    tasks:["Onboarding setup: users, accounts, rights, and rollout checklists","Data migration and reconciliation for master records","Data-entry and digital file quality controls","Technical PM workflow administration (intake/routing/status)","Template/report mapping for investor and internal reporting","Playbook transfer from Imotop/RIMO operating patterns to Capera tooling"],
     skills:["Platform onboarding and migration experience","Strong Excel/data tooling; SQL basics preferred","Process discipline for data quality and auditability","English fluency + German B1+ for labels/docs"],
     scaleNote:"Validation note: cut-over complexity depends on system/data readiness" },
   { role:"Tenant L1/L2 Support Archetype", count:"Indicative", type:"Core", color:"#34D399",
