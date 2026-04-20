@@ -1163,6 +1163,13 @@ body.auth-locked #auth-gate { display: flex; }
     <div class="stat-card"><div class="stat-icon">📈</div><div class="stat-value">Archetype C</div><div class="stat-label">Tenant Support Focus</div></div>
   </div>
 
+  <div class="fade-up d2" style="margin-bottom:14px;padding:14px 16px;border-radius:12px;background:rgba(79,142,247,0.08);border:1px solid rgba(79,142,247,0.16);">
+    <div style="font-size:11px;font-weight:700;color:var(--accent);text-transform:uppercase;letter-spacing:1px;margin-bottom:6px;">Required Ramp-Up Step</div>
+    <div style="font-size:12px;color:var(--text-muted);line-height:1.6;">
+      Capera-led onboarding is a required process step before go-live so extension team members align with Capera systems, workflows, service standards, and escalation rules.
+    </div>
+  </div>
+
   <!-- Role cards -->
   <div id="team-roles" class="fade-up d2"></div>
 
@@ -1186,7 +1193,7 @@ body.auth-locked #auth-gate { display: flex; }
     <div style="font-size:11px;font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:1px;margin-bottom:6px;">⚠ Language & Compliance Requirements</div>
     <div class="grid-2" style="gap:12px;">
       <div style="font-size:12px;color:var(--text-muted);line-height:1.6;">
-        <strong style="color:var(--text);">German language:</strong> Required for Band A (debtor correspondence/dunning) and Band C (tenant-facing). Recommended B2+ for Band A and C1 for Band C. Band B can operate in English with German B1+ for system labels and documentation.
+        <strong style="color:var(--text);">German language:</strong> Minimum A2/B1 for operational coordination and documentation; higher proficiency may be required for sensitive debtor or tenant-facing communication.
       </div>
       <div style="font-size:12px;color:var(--text-muted);line-height:1.6;">
         <strong style="color:var(--text);">GDPR:</strong> All team members must complete GDPR processor training before go-live. Spectra operates as data processor under Art. 28 GDPR. Role-based access controls and audit logging mandatory across all three prioritized bands.
@@ -1245,7 +1252,7 @@ const MODULES = [
     staff:"Proposed pilot capacity range for onboarding, migration, and platform operations support.",
     painPoints:["New mandates and takeovers create recurring onboarding and migration waves","Cross-system master data quality is inconsistent and labor-intensive to clean","Digital file completeness impacts both accounting and technical PM execution","Technical PM admin workflows need structured dispatch and tracking support","Template/report mapping is fragmented across assets and investor formats"],
     capera:["System ownership, security policy, and final platform decisions","Target operating model for technical PM and reporting","Approval authority for go-live and migration signoff"],
-    spectra:["Platform onboarding setup, user/account provisioning, and checklist execution","Data migration and validation for tenant, contract, meter, and vendor records","Digital file structuring, document indexing, and master-data hygiene","Technical PM admin support: work-order intake, routing, status updates, and coordination","Report/template mapping and data-reconciliation support","Swiss-market playbook transfer from Imotop/RIMO workflows adapted to Capera systems"],
+    spectra:["Platform onboarding setup, user/account provisioning, and checklist execution","Data migration and validation for tenant, contract, meter, and vendor records","Digital file structuring, document indexing, and master-data hygiene","Technical PM admin support: work-order intake, routing, status updates, and coordination","Report/template mapping and data-reconciliation support"],
     kpis:["Onboarding lead time (mandate to operational readiness)","Migration accuracy and reconciliation pass rate","Required-field data completeness","Technical admin dispatch turnaround","Data issue backlog aging"],
     risks:["System access provisioning delays from IT/security dependencies","Source data inconsistency can delay go-live"],
     pricing:["Decision checkpoint: confirm onboarding/error backlog profile","Decision checkpoint: validate source-data and access dependencies","Decision checkpoint: agree pilot cut-over criteria"]},
@@ -1389,8 +1396,8 @@ function renderComparison() {
 const TEAM_ROLES = [
   { role:"Accounting & Receivables Archetype", count:"Indicative", type:"Core", color:"#4F8EF7",
     bands:["Band A: Accounting","Band A: Receivables/Dunning"],
-    tasks:["Daily AP/AR posting and ledger reconciliation","Month-end close support packs and exception logging","Execution support for two monthly dunning runs","Installment-plan tracking and breach flagging","Debtor case administration and callback coordination","Accounting document capture, coding, and indexing"],
-    skills:["German accounting standards (HGB basics)","ERP proficiency (iX-Haus, Wodis, Domus, SAP RE or equivalent)","German language B2+ for debtor/accounting communication","High accuracy under recurring volume cycles"],
+    tasks:["Daily AP/AR posting and ledger reconciliation","Month-end close support packs and exception logging","Execution support for two monthly dunning runs","Installment-plan tracking and breach flagging"],
+    skills:["German accounting standards (HGB basics)","ERP proficiency in common property-management/accounting platforms","German language at least A2/B1 for debtor/accounting communication","High accuracy under recurring volume cycles"],
     scaleNote:"Validation note: volume and cadence to be confirmed with Capera" },
   { role:"Platform & Data Operations Archetype", count:"Indicative", type:"Specialist", color:"#F5A623",
     bands:["Band B: Platform Onboarding","Band B: Data Migration","Band B: Technical Admin Ops"],
