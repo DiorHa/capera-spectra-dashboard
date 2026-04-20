@@ -1,4 +1,4 @@
-# Capera × Spectra Dashboard
+# Capera ï¿½ Spectra Dashboard
 
 Static dashboard prototype for the Capera/Spectra partnership analysis.
 
@@ -9,3 +9,4 @@ Static dashboard prototype for the Capera/Spectra partnership analysis.
 _whitepaper_extract/
 whitepaper_lines.txt
 *.docx
+.vercel
