@@ -643,6 +643,103 @@ body.auth-locked #auth-gate { display: flex; }
   color: var(--text-muted);
   margin-top: 4px;
 }
+.spectra-anchor {
+  background: linear-gradient(180deg, #ffffff, #f7fbff);
+  border: 1px solid #cfdbef;
+  border-radius: 18px;
+  padding: 24px;
+  margin-bottom: 18px;
+  box-shadow: 0 12px 30px rgba(15, 23, 42, 0.06);
+}
+.spectra-anchor h3 {
+  font-size: 28px;
+  line-height: 1.2;
+  letter-spacing: -0.3px;
+  margin-bottom: 8px;
+}
+.spectra-anchor p {
+  font-size: 13px;
+  color: var(--text-muted);
+  margin: 0;
+}
+.spectra-subtext {
+  font-size: 12px;
+  color: var(--text-dim);
+  margin-top: 6px;
+}
+.spectra-diff-card {
+  background: #ffffff;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 18px;
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.04);
+}
+.spectra-diff-head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+.spectra-diff-icon {
+  width: 30px;
+  height: 30px;
+  border-radius: 9px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  background: #edf3ff;
+}
+.spectra-diff-title {
+  font-size: 15px;
+  font-weight: 800;
+  color: var(--accent);
+  margin: 0;
+}
+.spectra-diff-desc {
+  font-size: 12px;
+  color: var(--text-muted);
+  line-height: 1.65;
+}
+.spectra-foundation {
+  background: #f8fbff;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 18px;
+}
+.spectra-foundation h4 {
+  font-size: 14px;
+  font-weight: 800;
+  margin-bottom: 8px;
+}
+.spectra-foundation p {
+  font-size: 12px;
+  color: var(--text-muted);
+  line-height: 1.65;
+}
+.capability-block {
+  background: linear-gradient(180deg, #f6f9ff, #f3f7ff);
+  border: 1px solid #cfdbef;
+  border-radius: 18px;
+  padding: 16px;
+}
+.capability-card {
+  background: #ffffff;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 16px;
+  box-shadow: 0 7px 20px rgba(15, 23, 42, 0.04);
+}
+.capability-card h4 {
+  font-size: 14px;
+  font-weight: 800;
+  margin-bottom: 6px;
+}
+.capability-card p {
+  font-size: 12px;
+  line-height: 1.62;
+  color: var(--text-muted);
+}
 .band-list {
   background: #ffffff;
   border: 1px solid var(--border);
@@ -732,6 +829,8 @@ body.auth-locked #auth-gate { display: flex; }
   .comp-cols-head { display: none; }
   .comp-row { padding: 14px 16px; }
   .header-badges { display: none; }
+  .spectra-anchor { padding: 18px; }
+  .spectra-anchor h3 { font-size: 24px; }
 }
 </style>
 </head>
@@ -869,46 +968,68 @@ body.auth-locked #auth-gate { display: flex; }
 
 <!-- --------------- SPECTRA PROFILE TAB --------------- -->
 <div id="tab-spectra" class="tab-panel">
-  <div class="profile-hero fade-up" style="background:linear-gradient(135deg,rgba(167,139,250,0.09),rgba(79,142,247,0.06));border-color:rgba(167,139,250,0.25);">
-    <h3>🚀 Spectra Fit From Capera's Perspective</h3>
-    <p>
-      Spectra positions itself as a specialized nearshore extension platform for the DACH real estate and PropTech ecosystem, not a generic outsourcing provider.
-    </p>
+  <div class="spectra-anchor fade-up">
+    <h3>🚀 Spectra Fit from Capera’s Perspective</h3>
+    <p>Spectra operates as a specialized nearshore extension for the DACH real estate and PropTech ecosystem.</p>
+    <div class="spectra-subtext">Positioned for dedicated, governed extension teams instead of broad outsourcing.</div>
   </div>
 
+  <div class="section-label fade-up d1">Core Differentiators</div>
   <div class="grid-3 fade-up d1" style="margin-bottom:12px;">
-    <div class="profile-metric"><div class="k">Identity 1</div><div class="v">Specialized Operator</div><div class="d">Domain-focused real-estate/PropTech operator, not a generic labor marketplace.</div></div>
-    <div class="profile-metric"><div class="k">Identity 2</div><div class="v">Extension Model</div><div class="d">Dedicated long-term teams integrated into client operations while preserving governance and quality.</div></div>
-    <div class="profile-metric"><div class="k">Identity 3</div><div class="v">Real-Estate Native</div><div class="d">PropTech-native support where value compounds through industry specialization.</div></div>
+    <div class="spectra-diff-card">
+      <div class="spectra-diff-head">
+        <div class="spectra-diff-icon">🧭</div>
+        <h4 class="spectra-diff-title">Specialized Operator</h4>
+      </div>
+      <div class="spectra-diff-desc">Domain-focused real-estate/PropTech operator, not a generic labor marketplace.</div>
+    </div>
+    <div class="spectra-diff-card">
+      <div class="spectra-diff-head">
+        <div class="spectra-diff-icon">🤝</div>
+        <h4 class="spectra-diff-title">Extension Model</h4>
+      </div>
+      <div class="spectra-diff-desc">Dedicated long-term teams integrated into client operations while preserving governance and quality.</div>
+    </div>
+    <div class="spectra-diff-card">
+      <div class="spectra-diff-head">
+        <div class="spectra-diff-icon">🏘️</div>
+        <h4 class="spectra-diff-title">Real-Estate Native</h4>
+      </div>
+      <div class="spectra-diff-desc">PropTech-native support where value compounds through industry specialization.</div>
+    </div>
   </div>
 
+  <div class="section-label fade-up d2">Operational Foundation</div>
   <div class="grid-2 fade-up d2" style="margin-bottom:12px;">
-    <div class="insight-card" style="border-left-color:var(--purple);">
+    <div class="spectra-foundation">
       <h4 style="color:var(--purple);">Why Kosovo Works</h4>
       <p>Kosovo strengthens feasibility for multilingual operations, accounting execution, onboarding services, and selected technical delivery. The core proposition is governed, cost-rational extension teams for a specialized DACH real-estate niche.</p>
     </div>
-    <div class="insight-card" style="border-left-color:var(--gold);">
+    <div class="spectra-foundation">
       <h4 style="color:var(--gold);">Backed By Modium Holding</h4>
       <p>Spectra states it is backed by Modium's 18 years of expertise and 150+ architectural projects, carrying forward a precision-oriented operating culture.</p>
     </div>
   </div>
 
-  <div class="grid-2 fade-up d3" style="margin-top:12px;">
-    <div class="insight-card" style="border-left-color:var(--accent);">
-      <h4 style="color:var(--accent);">I. Managed Team Infrastructure</h4>
-      <p>Employer-of-record backbone for recruitment, compliance, payroll, and HR operations. Why it matters: faster activation without early foreign-employment setup friction.</p>
-    </div>
-    <div class="insight-card" style="border-left-color:var(--gold);">
-      <h4 style="color:var(--gold);">II. Platform Onboarding, Master Data & Data Operations</h4>
-      <p>Operational readiness for onboarding and migration, not basic data entry. Why it matters: reduces errors that impact reporting, invoicing, and platform trust.</p>
-    </div>
-    <div class="insight-card" style="border-left-color:var(--green);">
-      <h4 style="color:var(--green);">III. Accounting & Bookkeeping Support</h4>
-      <p>Recurring bookkeeping, reconciliations, VAT processing, and closings. Why it matters: absorbs repeatable, quality-sensitive load that constrains local teams.</p>
-    </div>
-    <div class="insight-card" style="border-left-color:var(--purple);">
-      <h4 style="color:var(--purple);">IV. Analytics, Development & Workflow Intelligence</h4>
-      <p>Long-term, industry-specific expansion layer. Why it matters: becomes credible after repeated workflow knowledge and trusted delivery are established.</p>
+  <div class="section-label fade-up d3">Capability Areas</div>
+  <div class="capability-block fade-up d3">
+    <div class="grid-2">
+      <div class="capability-card">
+        <h4 style="color:var(--accent);">Team Infrastructure</h4>
+        <p>Employer-of-record support covering recruitment, compliance, payroll, and HR operations for stable team activation.</p>
+      </div>
+      <div class="capability-card">
+        <h4 style="color:var(--gold);">Data & Platform Operations</h4>
+        <p>Onboarding, migration, and operational data readiness that reduces setup friction and protects downstream reporting quality.</p>
+      </div>
+      <div class="capability-card">
+        <h4 style="color:var(--green);">Accounting & Bookkeeping</h4>
+        <p>Recurring bookkeeping, reconciliations, VAT, and closings supporting stable financial operations under peak workload periods.</p>
+      </div>
+      <div class="capability-card">
+        <h4 style="color:var(--purple);">Analytics & Workflow Intelligence</h4>
+        <p>Industry-specific workflow optimization and intelligence layers added once operational credibility and data reliability are established.</p>
+      </div>
     </div>
   </div>
 
