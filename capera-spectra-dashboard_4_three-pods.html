@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Capera × Spectra - Strategic Analysis Dashboard</title>
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
 :root {
   --bg: #f7f9fc;
@@ -38,7 +38,7 @@ body {
     radial-gradient(circle at 90% 0%, #eef4ff 0%, transparent 38%),
     var(--bg);
   color: var(--text);
-  font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-family: 'Inter Tight', -apple-system, BlinkMacSystemFont, sans-serif;
   min-height: 100vh;
   -webkit-font-smoothing: antialiased;
 }
@@ -172,7 +172,7 @@ body.auth-locked #auth-gate { display: flex; }
   border: none; border-bottom: 2px solid transparent;
   padding: 10px 18px; font-size: 12px; font-weight: 600;
   cursor: pointer; transition: all 0.2s;
-  font-family: 'DM Sans', sans-serif;
+  font-family: 'Inter Tight', sans-serif;
   display: flex; align-items: center; gap: 6px;
   border-radius: 10px 10px 0 0; white-space: nowrap;
 }
@@ -361,7 +361,7 @@ body.auth-locked #auth-gate { display: flex; }
 }
 .stat-value {
   font-size: 30px; font-weight: 800; color: var(--accent);
-  font-family: 'DM Sans', sans-serif; letter-spacing: -0.5px;
+  font-family: 'JetBrains Mono', monospace; letter-spacing: -0.3px;
 }
 .stat-label { font-size: 12px; color: var(--text-muted); margin-top: 4px; line-height: 1.4; }
 
@@ -408,7 +408,7 @@ body.auth-locked #auth-gate { display: flex; }
 }
 .module-tag {
   font-size: 10px; font-weight: 800; color: #000;
-  padding: 2px 6px; border-radius: 4px; font-family: 'DM Mono', monospace;
+  padding: 2px 6px; border-radius: 4px; font-family: 'JetBrains Mono', monospace;
 }
 .module-name { font-size: 13px; font-weight: 600; color: var(--text); }
 .module-short { font-size: 11px; color: var(--text-muted); margin-top: 2px; }
@@ -425,7 +425,7 @@ body.auth-locked #auth-gate { display: flex; }
   width: 48px; height: 48px; border-radius: 12px;
   display: flex; align-items: center; justify-content: center; font-size: 26px;
 }
-.module-detail-title { font-size: 20px; font-weight: 700; font-family: 'DM Sans', sans-serif; }
+.module-detail-title { font-size: 20px; font-weight: 700; font-family: 'Inter Tight', sans-serif; }
 .module-meta { display: flex; gap: 12px; margin-top: 4px; flex-wrap: wrap; }
 .module-meta span { font-size: 11px; padding: 2px 8px; border-radius: 6px; }
 
@@ -433,7 +433,7 @@ body.auth-locked #auth-gate { display: flex; }
 .detail-tab {
   background: transparent; color: var(--text-muted); border: none; border-radius: 6px;
   padding: 6px 14px; font-size: 12px; font-weight: 600; cursor: pointer;
-  font-family: 'DM Sans', sans-serif; transition: all 0.2s;
+  font-family: 'Inter Tight', sans-serif; transition: all 0.2s;
 }
 .detail-tab.active { background: rgba(79,142,247,0.15); color: var(--accent); }
 
@@ -485,7 +485,7 @@ body.auth-locked #auth-gate { display: flex; }
 }
 .phase-week {
   min-width: 80px; font-size: 12px; font-weight: 700;
-  font-family: 'DM Mono', monospace;
+  font-family: 'JetBrains Mono', monospace;
 }
 .phase-name { font-size: 15px; font-weight: 700; color: var(--text); margin-bottom: 4px; }
 .phase-desc { font-size: 12px; color: var(--text-muted); line-height: 1.5; }
@@ -516,7 +516,7 @@ body.auth-locked #auth-gate { display: flex; }
   padding: 16px 20px; border-bottom: 1px solid var(--border);
   display: flex; align-items: center; gap: 12px; flex-wrap: wrap;
 }
-.comp-header h3 { font-size: 15px; font-weight: 700; font-family: 'DM Sans', sans-serif; }
+.comp-header h3 { font-size: 15px; font-weight: 700; font-family: 'Inter Tight', sans-serif; }
 .comp-header span { font-size: 11px; color: var(--text-muted); margin-left: auto; }
 .comp-cols {
   display: grid; grid-template-columns: 140px 70px 1fr 1fr 1fr; gap: 0;
@@ -536,7 +536,7 @@ body.auth-locked #auth-gate { display: flex; }
 .comp-service { font-size: 12px; font-weight: 600; color: var(--text); }
 .comp-modules {
   text-align: center; font-size: 10px; font-weight: 700; color: var(--accent);
-  font-family: 'DM Mono', monospace;
+  font-family: 'JetBrains Mono', monospace;
 }
 .comp-modules span {
   background: rgba(79,142,247,0.12); padding: 2px 6px; border-radius: 4px;
@@ -553,7 +553,7 @@ body.auth-locked #auth-gate { display: flex; }
 .market-alert h3 { font-size: 15px; font-weight: 700; color: var(--red); margin-bottom: 12px; }
 .market-stat { text-align: center; }
 .market-stat-val {
-  font-size: 24px; font-weight: 800; color: var(--red); font-family: 'DM Sans', sans-serif;
+  font-size: 24px; font-weight: 800; color: var(--red); font-family: 'JetBrains Mono', monospace;
 }
 .market-stat-desc { font-size: 11px; color: var(--text-muted); margin-top: 4px; line-height: 1.4; }
 
@@ -624,6 +624,19 @@ body.auth-locked #auth-gate { display: flex; }
   color: var(--accent);
   font-weight: 800;
   margin-top: 6px;
+  font-family: 'JetBrains Mono', monospace;
+}
+
+/* Data/technical typography */
+.score-row strong,
+.kpi-item,
+.price-item,
+.risk-item,
+.module-meta span,
+.badge,
+.success-item,
+.comp-kpis {
+  font-family: 'JetBrains Mono', monospace;
 }
 .profile-metric .d {
   font-size: 11px;
@@ -954,7 +967,7 @@ body.auth-locked #auth-gate { display: flex; }
 <div id="tab-timeline" class="tab-panel">
   <div class="timeline-container fade-up">
     <div style="font-size:11px;font-weight:700;color:var(--accent);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:4px;">Capera Pilot Proposal</div>
-    <div style="font-size:20px;font-weight:700;color:var(--text);margin-bottom:4px;font-family:'DM Sans',sans-serif;">Controlled Rollout With Decision Gates</div>
+    <div style="font-size:20px;font-weight:700;color:var(--text);margin-bottom:4px;font-family:'Inter Tight',sans-serif;">Controlled Rollout With Decision Gates</div>
     <div style="font-size:12px;color:var(--text-muted);margin-bottom:24px;">One scoped workload slice, measurable governance, then scale/stop decision</div>
 
     <div class="charter-grid fade-up d2">
@@ -1015,7 +1028,7 @@ body.auth-locked #auth-gate { display: flex; }
 <div id="tab-team" class="tab-panel">
   <div class="fade-up" style="margin-bottom:20px;">
     <div style="font-size:11px;font-weight:700;color:var(--accent);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:4px;">Appendix</div>
-    <div style="font-size:20px;font-weight:700;color:var(--text);margin-bottom:4px;font-family:'DM Sans',sans-serif;">Capability Archetypes (If Requested)</div>
+    <div style="font-size:20px;font-weight:700;color:var(--text);margin-bottom:4px;font-family:'Inter Tight',sans-serif;">Capability Archetypes (If Requested)</div>
     <div style="font-size:12px;color:var(--text-muted);margin-bottom:0;">For follow-up planning after intro alignment; not a first-meeting commitment.</div>
   </div>
 
@@ -1274,7 +1287,7 @@ function renderTeamRoster() {
       <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:14px;">
         <div>
           <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px;">
-            <span style="font-size:16px;font-weight:800;color:${r.color};font-family:'DM Sans',sans-serif;">${r.count}</span>
+            <span style="font-size:16px;font-weight:800;color:${r.color};font-family:'JetBrains Mono',monospace;">${r.count}</span>
             <span style="font-size:15px;font-weight:700;color:var(--text);">${r.role}</span>
             <span style="font-size:10px;font-weight:700;padding:2px 8px;border-radius:4px;background:${r.type==='Core'?'rgba(52,211,153,0.12)':r.type==='Specialist'?'rgba(167,139,250,0.12)':'rgba(251,146,60,0.12)'};color:${r.type==='Core'?'var(--green)':r.type==='Specialist'?'var(--purple)':'var(--orange)'};">${r.type}</span>
           </div>
