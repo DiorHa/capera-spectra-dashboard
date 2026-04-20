@@ -39,6 +39,76 @@ body {
   min-height: 100vh;
   -webkit-font-smoothing: antialiased;
 }
+body.auth-locked .header,
+body.auth-locked .content { display: none; }
+
+#auth-gate {
+  min-height: 100vh;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  background:
+    radial-gradient(circle at 20% 20%, rgba(79,142,247,0.18), transparent 40%),
+    radial-gradient(circle at 80% 10%, rgba(245,166,35,0.12), transparent 35%),
+    var(--bg);
+}
+body.auth-locked #auth-gate { display: flex; }
+.auth-card {
+  width: 100%;
+  max-width: 420px;
+  background: linear-gradient(180deg, rgba(22,30,46,0.95), rgba(17,24,39,0.95));
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 24px;
+}
+.auth-title {
+  font-size: 22px;
+  font-weight: 800;
+  margin-bottom: 4px;
+}
+.auth-sub {
+  font-size: 12px;
+  color: var(--text-muted);
+  margin-bottom: 16px;
+}
+.auth-label {
+  font-size: 11px;
+  color: var(--text-dim);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 6px;
+}
+.auth-input {
+  width: 100%;
+  border: 1px solid var(--border);
+  background: rgba(11,15,26,0.7);
+  color: var(--text);
+  border-radius: 10px;
+  padding: 10px 12px;
+  margin-bottom: 12px;
+  font-family: inherit;
+}
+.auth-input:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+.auth-btn {
+  width: 100%;
+  border: none;
+  border-radius: 10px;
+  padding: 10px 12px;
+  font-weight: 700;
+  color: #fff;
+  background: linear-gradient(135deg, var(--accent), var(--accent-light));
+  cursor: pointer;
+}
+.auth-error {
+  min-height: 18px;
+  margin-top: 8px;
+  font-size: 12px;
+  color: var(--red);
+}
 
 /* Animations */
 @keyframes fadeUp {
@@ -576,6 +646,21 @@ body {
 </style>
 </head>
 <body>
+<div id="auth-gate">
+  <div class="auth-card">
+    <div style="font-size:11px;font-weight:700;color:var(--accent);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:6px;">Restricted Access</div>
+    <div class="auth-title">Capera × Spectra Dashboard</div>
+    <div class="auth-sub">Sign in with your shared credentials to continue.</div>
+    <form id="auth-form">
+      <div class="auth-label">Username</div>
+      <input id="auth-username" class="auth-input" type="text" autocomplete="username" required>
+      <div class="auth-label">Password</div>
+      <input id="auth-password" class="auth-input" type="password" autocomplete="current-password" required>
+      <button class="auth-btn" type="submit">Sign In</button>
+      <div id="auth-error" class="auth-error"></div>
+    </form>
+  </div>
+</div>
 
 <!-- HEADER -->
 <div class="header">
@@ -1160,6 +1245,39 @@ function renderTeamRoster() {
 }
 
 // --- INIT ---
+const AUTH_USER = "capera";
+const AUTH_PASS = "spectra2026!";
+const AUTH_KEY = "capera_spectra_auth_ok";
+
+function initAuthGate() {
+  const isAuthed = sessionStorage.getItem(AUTH_KEY) === "1";
+  if (!isAuthed) {
+    document.body.classList.add("auth-locked");
+  }
+
+  const form = document.getElementById("auth-form");
+  const userEl = document.getElementById("auth-username");
+  const passEl = document.getElementById("auth-password");
+  const errorEl = document.getElementById("auth-error");
+
+  if (!form) return;
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const u = userEl.value.trim();
+    const p = passEl.value;
+    if (u === AUTH_USER && p === AUTH_PASS) {
+      sessionStorage.setItem(AUTH_KEY, "1");
+      document.body.classList.remove("auth-locked");
+      errorEl.textContent = "";
+      passEl.value = "";
+      window.scrollTo(0, 0);
+    } else {
+      errorEl.textContent = "Invalid username or password.";
+    }
+  });
+}
+
+initAuthGate();
 renderModuleList();
 renderModuleDetail();
 renderComparison();
