@@ -1158,21 +1158,21 @@ body.auth-locked #auth-gate { display: flex; }
 <div id="tab-team" class="tab-panel">
   <div class="fade-up" style="margin-bottom:20px;">
     <div style="font-size:11px;font-weight:700;color:var(--accent);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:4px;">Appendix</div>
-    <div style="font-size:20px;font-weight:700;color:var(--text);margin-bottom:4px;font-family:'Inter Tight',sans-serif;">Capability Archetypes (If Requested)</div>
-    <div style="font-size:12px;color:var(--text-muted);margin-bottom:0;">For follow-up planning after intro alignment; not a first-meeting commitment.</div>
+    <div style="font-size:20px;font-weight:700;color:var(--text);margin-bottom:4px;font-family:'Inter Tight',sans-serif;">Capability Archetypes</div>
+    <div style="font-size:12px;color:var(--text-muted);margin-bottom:0;">Illustrative delivery models aligned to core operational areas.</div>
   </div>
 
   <!-- Summary stats -->
   <div class="grid-3 fade-up d1" style="margin-bottom:20px;">
-    <div class="stat-card"><div class="stat-icon">👥</div><div class="stat-value">Archetype A</div><div class="stat-label">Finance Operations Focus</div></div>
-    <div class="stat-card"><div class="stat-icon">🎯</div><div class="stat-value">Archetype B</div><div class="stat-label">Platform/Data Ops Focus</div></div>
-    <div class="stat-card"><div class="stat-icon">📈</div><div class="stat-value">Archetype C</div><div class="stat-label">Tenant Support Focus</div></div>
+    <div class="stat-card"><div class="stat-icon">👥</div><div class="stat-value">Archetype A</div><div class="stat-label">Finance and Accounting Operations</div></div>
+    <div class="stat-card"><div class="stat-icon">🎯</div><div class="stat-value">Archetype B</div><div class="stat-label">Platform and Data Operations</div></div>
+    <div class="stat-card"><div class="stat-icon">📈</div><div class="stat-value">Archetype C</div><div class="stat-label">Tenant Operations and Service Delivery</div></div>
   </div>
 
   <div class="fade-up d2" style="margin-bottom:14px;padding:14px 16px;border-radius:12px;background:rgba(79,142,247,0.08);border:1px solid rgba(79,142,247,0.16);">
-    <div style="font-size:11px;font-weight:700;color:var(--accent);text-transform:uppercase;letter-spacing:1px;margin-bottom:6px;">Required Ramp-Up Step</div>
+    <div style="font-size:11px;font-weight:700;color:var(--accent);text-transform:uppercase;letter-spacing:1px;margin-bottom:6px;">Structured Onboarding and Alignment</div>
     <div style="font-size:12px;color:var(--text-muted);line-height:1.6;">
-      Capera-led onboarding is a required process step before go-live so extension team members align with Capera systems, workflows, service standards, and escalation rules.
+      A structured onboarding phase is embedded across all engagements to ensure alignment with Capera systems, workflows, service standards, and escalation protocols prior to go-live.
     </div>
   </div>
 
@@ -1184,13 +1184,13 @@ body.auth-locked #auth-gate { display: flex; }
       <div>Capability Matrix</div><div>Band A</div><div>Band B</div><div>Band C</div><div>Owner</div>
     </div>
     <div class="row">
-      <div>Execution Throughput</div><div>High</div><div>High</div><div>Medium</div><div>Spectra</div>
+      <div>Delivery Capacity</div><div>High</div><div>High</div><div>Medium</div><div>Spectra</div>
     </div>
     <div class="row">
-      <div>Policy / Decision Rights</div><div>Capera</div><div>Capera</div><div>Capera</div><div>Capera</div>
+      <div>Decision Ownership</div><div>Capera</div><div>Capera</div><div>Capera</div><div>Capera</div>
     </div>
     <div class="row">
-      <div>QA + Governance Reporting</div><div>Shared</div><div>Shared</div><div>Shared</div><div>Joint</div>
+      <div>Quality Assurance and Governance Oversight</div><div>Shared</div><div>Shared</div><div>Shared</div><div>Joint</div>
     </div>
   </div>
 
@@ -1199,10 +1199,10 @@ body.auth-locked #auth-gate { display: flex; }
     <div style="font-size:11px;font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:1px;margin-bottom:6px;">⚠ Language & Compliance Requirements</div>
     <div class="grid-2" style="gap:12px;">
       <div style="font-size:12px;color:var(--text-muted);line-height:1.6;">
-        <strong style="color:var(--text);">German language:</strong> Minimum A2/B1 for operational coordination and documentation; higher proficiency may be required for sensitive debtor or tenant-facing communication.
+        <strong style="color:var(--text);">German Language:</strong> Minimum B1 for operational coordination and documentation. Higher proficiency required for tenant-facing and collections activities.
       </div>
       <div style="font-size:12px;color:var(--text-muted);line-height:1.6;">
-        <strong style="color:var(--text);">GDPR:</strong> All team members must complete GDPR processor training before go-live. Spectra operates as data processor under Art. 28 GDPR. Role-based access controls and audit logging mandatory across all three prioritized bands.
+        <strong style="color:var(--text);">GDPR:</strong> All team members complete GDPR processor training prior to go-live. Spectra operates as a data processor under Art. 28 GDPR, with role-based access controls and audit logging in place.
       </div>
     </div>
   </div>
@@ -1399,21 +1399,21 @@ function renderComparison() {
 
 // --- TEAM ROSTER ---
 const TEAM_ROLES = [
-  { role:"Accounting & Receivables Archetype", count:"Indicative", type:"Core", color:"#4F8EF7",
+  { role:"Accounting & Receivables Archetype", count:"Illustrative Delivery Scope", type:"Core", color:"#4F8EF7",
     bands:["Band A: Accounting","Band A: Receivables/Dunning"],
-    tasks:["Daily AP/AR posting and ledger reconciliation","Month-end close support packs and exception logging","Execution support for two monthly dunning runs","Installment-plan tracking and breach flagging"],
-    skills:["German accounting standards (HGB basics)","ERP proficiency in common property-management/accounting platforms","German language at least A2/B1 for debtor/accounting communication","High accuracy under recurring volume cycles"],
-    scaleNote:"Validation note: volume and cadence to be confirmed with Capera" },
-  { role:"Platform & Data Operations Archetype", count:"Indicative", type:"Specialist", color:"#F5A623",
+    tasks:["Accounts payable and receivable processing with ledger reconciliation","Month-end close support and reporting preparation","Execution of recurring collections cycles and follow-ups","Monitoring of payment plans and exception handling"],
+    skills:["Understanding of German accounting standards","Experience with property management and accounting systems","German language proficiency for financial coordination","Accuracy and consistency in high-volume processing environments"],
+    scaleNote:"Final scope calibrated based on Capera operational requirements" },
+  { role:"Platform & Data Operations Archetype", count:"Illustrative Delivery Scope", type:"Specialist", color:"#F5A623",
     bands:["Band B: Platform Onboarding","Band B: Data Migration","Band B: Technical Admin Ops"],
-    tasks:["Onboarding setup: users, accounts, rights, and rollout checklists","Data migration and reconciliation for master records","Data-entry and digital file quality controls","Technical PM workflow administration (intake/routing/status)","Template/report mapping for investor and internal reporting","Playbook transfer from Imotop/RIMO operating patterns to Capera tooling"],
-    skills:["Platform onboarding and migration experience","Strong Excel/data tooling; SQL basics preferred","Process discipline for data quality and auditability","English fluency + German B1+ for labels/docs"],
-    scaleNote:"Validation note: cut-over complexity depends on system/data readiness" },
-  { role:"Tenant L1/L2 Support Archetype", count:"Indicative", type:"Core", color:"#34D399",
+    tasks:["System onboarding including user setup, access configuration, and rollout coordination","Data validation, reconciliation, and preparation of master records","Ongoing data maintenance and quality assurance controls","Workflow coordination across operational and technical processes","Reporting structure alignment for internal and investor needs","Transition support from legacy or external systems into Capera environments"],
+    skills:["Experience with system onboarding and data migration processes","Strong Excel and structured data handling capabilities","Understanding of data quality standards and audit requirements","English and German proficiency for documentation and coordination"],
+    scaleNote:"To be aligned during pilot definition phase" },
+  { role:"Tenant L1/L2 Support Archetype", count:"Illustrative Delivery Scope", type:"Core", color:"#34D399",
     bands:["Band C: Tenant L1/L2 Support"],
-    tasks:["L1/L2 response handling across phone, email, and portal","Appointment scheduling and follow-up confirmations","Triage and escalation routing to Capera teams","Communication logging and case-history maintenance","Callback queue handling and SLA monitoring","Overflow coverage during high-contact periods"],
-    skills:["German C1 for tenant-facing verbal and written communication","Customer service quality aligned to Capera brand tone","Ticketing/CRM workflow familiarity","Escalation discipline and clear handover writing"],
-    scaleNote:"Validation note: channel volumes and SLA targets to be confirmed" }
+    tasks:["First- and second-level tenant support across phone, email, and digital channels","Appointment coordination and service follow-up","Structured triage and escalation to Capera teams","Case documentation and interaction tracking","Queue management and SLA monitoring","Support during peak demand periods"],
+    skills:["Strong German communication skills for tenant interaction","Customer service orientation aligned with Capera standards","Familiarity with ticketing and CRM workflows","Structured escalation handling and documentation discipline"],
+    scaleNote:"To be aligned during pilot definition phase" }
 ];
 
 function renderTeamRoster() {
@@ -1437,11 +1437,11 @@ function renderTeamRoster() {
       </div>
       <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;">
         <div>
-          <div style="font-size:10px;font-weight:700;color:var(--text-dim);text-transform:uppercase;letter-spacing:1px;margin-bottom:6px;">Key Tasks</div>
+          <div style="font-size:10px;font-weight:700;color:var(--text-dim);text-transform:uppercase;letter-spacing:1px;margin-bottom:6px;">Key Activities</div>
           ${r.tasks.map(t => `<div style="font-size:11px;color:var(--text-muted);padding:3px 0;display:flex;gap:6px;line-height:1.4;"><span style="color:${r.color};flex-shrink:0;">›</span>${t}</div>`).join('')}
         </div>
         <div>
-          <div style="font-size:10px;font-weight:700;color:var(--text-dim);text-transform:uppercase;letter-spacing:1px;margin-bottom:6px;">Required Skills</div>
+          <div style="font-size:10px;font-weight:700;color:var(--text-dim);text-transform:uppercase;letter-spacing:1px;margin-bottom:6px;">Required Capabilities</div>
           ${r.skills.map(s => `<div style="font-size:11px;color:var(--text-muted);padding:3px 0;display:flex;gap:6px;line-height:1.4;"><span style="color:var(--accent);flex-shrink:0;">✦</span>${s}</div>`).join('')}
         </div>
       </div>
