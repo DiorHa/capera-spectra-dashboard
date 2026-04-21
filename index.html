@@ -533,6 +533,7 @@ body.auth-locked #auth-gate { display: flex; }
 .comp-row:nth-child(even) { background: rgba(26,34,53,0.4); }
 .comp-row:nth-child(even) { background: #f9fbff; }
 .comp-row:nth-child(even):hover { background: #eef4ff; }
+.comp-mobile-label { display: none; }
 .comp-service { font-size: 12px; font-weight: 600; color: var(--text); }
 .comp-modules {
   text-align: center; font-size: 10px; font-weight: 700; color: var(--accent);
@@ -544,6 +545,16 @@ body.auth-locked #auth-gate { display: flex; }
 .comp-capera { font-size: 11px; color: var(--gold); line-height: 1.5; }
 .comp-spectra { font-size: 11px; color: var(--accent-light); line-height: 1.5; }
 .comp-kpis { font-size: 11px; color: var(--text-muted); line-height: 1.5; }
+.comp-kpi-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 2px; }
+.comp-kpi-tag {
+  font-size: 10px;
+  color: var(--text-muted);
+  background: #f4f7fc;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 2px 8px;
+  line-height: 1.4;
+}
 
 /* Market tab */
 .market-alert {
@@ -825,9 +836,51 @@ body.auth-locked #auth-gate { display: flex; }
   .phase-card { flex-direction: column; gap: 8px; }
   .phase-week { min-width: auto; }
   .phase-icon { margin-left: 0; }
-  .comp-cols, .comp-row { grid-template-columns: 1fr; gap: 4px; }
+  .comp-cols { grid-template-columns: 1fr; gap: 4px; }
   .comp-cols-head { display: none; }
-  .comp-row { padding: 14px 16px; }
+  #comp-rows { display: flex; flex-direction: column; gap: 12px; padding: 2px 0; }
+  .comp-row {
+    grid-template-columns: 1fr;
+    gap: 8px;
+    padding: 14px;
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    background: #ffffff;
+    box-shadow: 0 8px 18px rgba(15, 23, 42, 0.04);
+    margin: 0;
+  }
+  .comp-row:nth-child(even) { background: #ffffff; }
+  .comp-row:hover { background: #ffffff; }
+  .comp-mobile-label {
+    display: block;
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.9px;
+    color: var(--text-dim);
+    margin-bottom: 2px;
+  }
+  .comp-service {
+    font-size: 16px;
+    font-weight: 800;
+    line-height: 1.25;
+    color: var(--text);
+  }
+  .comp-capera {
+    font-size: 12px;
+    line-height: 1.5;
+    color: #8a5b2b;
+    max-width: 32ch;
+  }
+  .comp-spectra {
+    font-size: 13px;
+    line-height: 1.55;
+    color: var(--accent);
+    max-width: 34ch;
+  }
+  .comp-kpis { font-size: 11px; }
+  .comp-kpi-tags { margin-top: 1px; }
+  .comp-kpi-tag { font-size: 10px; padding: 3px 8px; }
   .header-badges { display: none; }
   .spectra-anchor { padding: 18px; }
   .spectra-anchor h3 { font-size: 24px; }
@@ -1389,10 +1442,24 @@ function renderModuleDetail() {
 function renderComparison() {
   document.getElementById('comp-rows').innerHTML = COMPARISON.map((r, i) => `
     <div class="comp-row">
-      <div class="comp-service">${r.area}</div>
-      <div class="comp-capera">${r.pressure}</div>
-      <div class="comp-spectra">${r.value}</div>
-      <div class="comp-kpis">${r.success}</div>
+      <div class="comp-service">
+        <span class="comp-mobile-label">Operational Area</span>
+        ${r.area}
+      </div>
+      <div class="comp-capera">
+        <span class="comp-mobile-label">Business Pressure</span>
+        ${r.pressure}
+      </div>
+      <div class="comp-spectra">
+        <span class="comp-mobile-label">Value Delivered</span>
+        ${r.value}
+      </div>
+      <div class="comp-kpis">
+        <span class="comp-mobile-label">Key Metrics</span>
+        <div class="comp-kpi-tags">
+          ${r.success.split('·').map(k => `<span class="comp-kpi-tag">${k.trim()}</span>`).join('')}
+        </div>
+      </div>
     </div>
   `).join('');
 }
