@@ -555,6 +555,56 @@ body.auth-locked #auth-gate { display: flex; }
   padding: 2px 8px;
   line-height: 1.4;
 }
+.comparison-mobile-cards { display: none; }
+.comparison-mobile-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  box-shadow: 0 8px 18px rgba(15, 23, 42, 0.04);
+  padding: 14px;
+}
+.comparison-mobile-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+.comparison-mobile-title {
+  font-size: 14px;
+  font-weight: 800;
+  color: var(--text);
+  line-height: 1.25;
+}
+.comparison-mobile-badge {
+  font-size: 10px;
+  font-weight: 700;
+  padding: 2px 7px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: #f4f7fc;
+  color: var(--text-dim);
+}
+.comparison-mobile-row {
+  display: grid;
+  grid-template-columns: 110px 1fr;
+  gap: 10px;
+  padding: 7px 0;
+  border-bottom: 1px solid rgba(42,54,84,0.12);
+}
+.comparison-mobile-row:last-child { border-bottom: none; padding-bottom: 0; }
+.comparison-mobile-label {
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--text-dim);
+  text-transform: uppercase;
+  letter-spacing: 0.9px;
+}
+.comparison-mobile-value {
+  font-size: 12px;
+  color: var(--text);
+  line-height: 1.5;
+}
 
 /* Market tab */
 .market-alert {
@@ -881,6 +931,14 @@ body.auth-locked #auth-gate { display: flex; }
   .comp-kpis { font-size: 11px; }
   .comp-kpi-tags { margin-top: 1px; }
   .comp-kpi-tag { font-size: 10px; padding: 3px 8px; }
+  #tab-comparison .comparison-summary-table { display: none; }
+  #tab-comparison .comparison-mobile-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 12px;
+  }
+  .comparison-mobile-row { grid-template-columns: 1fr; gap: 4px; }
   .header-badges { display: none; }
   .spectra-anchor { padding: 18px; }
   .spectra-anchor h3 { font-size: 24px; }
@@ -1273,7 +1331,7 @@ body.auth-locked #auth-gate { display: flex; }
     </div>
     <div id="comp-rows"></div>
   </div>
-  <div class="mini-table fade-up d2">
+  <div class="mini-table comparison-summary-table fade-up d2">
     <div class="row head">
       <div>Band</div><div>Frequency</div><div>Impact</div><div>Risk</div><div>Current Workaround Cost</div>
     </div>
@@ -1285,6 +1343,77 @@ body.auth-locked #auth-gate { display: flex; }
     </div>
     <div class="row">
       <div>Band C: Tenant L1/L2</div><div>Continuous multi-channel</div><div>Medium-High</div><div>SLA / CX erosion</div><div>Queue and escalation burden</div>
+    </div>
+  </div>
+
+  <div class="comparison-mobile-cards fade-up d2">
+    <div class="comparison-mobile-card">
+      <div class="comparison-mobile-head">
+        <div class="comparison-mobile-title">Band A: Finance Operations</div>
+        <span class="comparison-mobile-badge">A</span>
+      </div>
+      <div class="comparison-mobile-row">
+        <div class="comparison-mobile-label">Work Pattern</div>
+        <div class="comparison-mobile-value">Continuous activity with predictable peak cycles</div>
+      </div>
+      <div class="comparison-mobile-row">
+        <div class="comparison-mobile-label">Impact</div>
+        <div class="comparison-mobile-value">High</div>
+      </div>
+      <div class="comparison-mobile-row">
+        <div class="comparison-mobile-label">Risk Exposure</div>
+        <div class="comparison-mobile-value">Delays, errors, and pressure on financial close timelines</div>
+      </div>
+      <div class="comparison-mobile-row">
+        <div class="comparison-mobile-label">Internal Cost Driver</div>
+        <div class="comparison-mobile-value">Diversion of specialist capacity</div>
+      </div>
+    </div>
+
+    <div class="comparison-mobile-card">
+      <div class="comparison-mobile-head">
+        <div class="comparison-mobile-title">Band B: Platform and Data Operations</div>
+        <span class="comparison-mobile-badge">B</span>
+      </div>
+      <div class="comparison-mobile-row">
+        <div class="comparison-mobile-label">Work Pattern</div>
+        <div class="comparison-mobile-value">Recurring onboarding and migration waves</div>
+      </div>
+      <div class="comparison-mobile-row">
+        <div class="comparison-mobile-label">Impact</div>
+        <div class="comparison-mobile-value">High</div>
+      </div>
+      <div class="comparison-mobile-row">
+        <div class="comparison-mobile-label">Risk Exposure</div>
+        <div class="comparison-mobile-value">Delayed implementation and data quality inconsistencies</div>
+      </div>
+      <div class="comparison-mobile-row">
+        <div class="comparison-mobile-label">Internal Cost Driver</div>
+        <div class="comparison-mobile-value">Manual rework and data correction effort</div>
+      </div>
+    </div>
+
+    <div class="comparison-mobile-card">
+      <div class="comparison-mobile-head">
+        <div class="comparison-mobile-title">Band C: Tenant Support Operations</div>
+        <span class="comparison-mobile-badge">C</span>
+      </div>
+      <div class="comparison-mobile-row">
+        <div class="comparison-mobile-label">Work Pattern</div>
+        <div class="comparison-mobile-value">Ongoing multi channel demand with escalation layers</div>
+      </div>
+      <div class="comparison-mobile-row">
+        <div class="comparison-mobile-label">Impact</div>
+        <div class="comparison-mobile-value">Medium to High</div>
+      </div>
+      <div class="comparison-mobile-row">
+        <div class="comparison-mobile-label">Risk Exposure</div>
+        <div class="comparison-mobile-value">Service level pressure and customer experience degradation</div>
+      </div>
+      <div class="comparison-mobile-row">
+        <div class="comparison-mobile-label">Internal Cost Driver</div>
+        <div class="comparison-mobile-value">Queue buildup and escalation management load</div>
+      </div>
     </div>
   </div>
 </div>
