@@ -519,13 +519,13 @@ body.auth-locked #auth-gate { display: flex; }
 .comp-header h3 { font-size: 15px; font-weight: 700; font-family: 'Inter Tight', sans-serif; }
 .comp-header span { font-size: 11px; color: var(--text-muted); margin-left: auto; }
 .comp-cols {
-  display: grid; grid-template-columns: 140px 70px 1fr 1fr 1fr; gap: 0;
+  display: grid; grid-template-columns: 190px 1fr 1fr 1fr; gap: 0;
   padding: 10px 16px; font-size: 10px; font-weight: 700; color: var(--text-dim);
   text-transform: uppercase; letter-spacing: 1px;
 }
 .comp-cols-head { background: var(--surface-alt); border-bottom: 1px solid var(--border); }
 .comp-row {
-  display: grid; grid-template-columns: 140px 70px 1fr 1fr 1fr; gap: 0;
+  display: grid; grid-template-columns: 190px 1fr 1fr 1fr; gap: 0;
   padding: 12px 16px; border-bottom: 1px solid rgba(42,54,84,0.3);
   transition: background 0.15s;
 }
@@ -1205,11 +1205,11 @@ body.auth-locked #auth-gate { display: flex; }
 <div id="tab-comparison" class="tab-panel">
   <div class="comp-table fade-up">
     <div class="comp-header">
-      <h3>Capera Problem Framing: Where Operations Need Relief</h3>
-      <span>Pressure map to prioritize partner-supported execution lanes</span>
+      <h3>Capera Operational Focus Areas: Where Targeted Support Drives Impact</h3>
+      <span>Operational pressure points mapped to partner-supported value and measurable outcomes</span>
     </div>
     <div class="comp-cols comp-cols-head">
-      <div>Service Band</div><div style="text-align:center;">Priority</div><div>Pain Signal</div><div>Extension Opportunity</div><div>KPI Signal</div>
+      <div>Operational Area</div><div>Business Pressure</div><div>Value Through Partner Support</div><div>Success Measure</div>
     </div>
     <div id="comp-rows"></div>
   </div>
@@ -1268,12 +1268,12 @@ const MODULES = [
 ];
 
 const COMPARISON = [
-  {service:"Accounting + AP/AR",modules:"High",capera:"Recurring posting/reconciliation workload and month-end pressure",spectra:"Execution support for repetitive accounting cycles",kpis:"Close cycle · Posting accuracy · Backlog age"},
-  {service:"Receivables + Dunning",modules:"High",capera:"Two monthly dunning runs and follow-up administration",spectra:"Pipeline operations and documented case progression",kpis:"Cure rate · Days delinquent · Run timeliness"},
-  {service:"Platform Onboarding",modules:"High",capera:"New mandates create setup and migration coordination load",spectra:"Structured onboarding and setup-readiness support",kpis:"Onboarding lead time · Error rate"},
-  {service:"Data Migration + Hygiene",modules:"High",capera:"Data quality debt slows operations and reporting",spectra:"Validation, cleanup, and completeness operations",kpis:"Data completeness · Reconciliation breaks"},
-  {service:"Technical Workflow Admin",modules:"Medium",capera:"Dispatch/tracking administration competes with specialist time",spectra:"Operational routing and status-management support",kpis:"Dispatch turnaround · Open-item aging"},
-  {service:"Tenant L1/L2 Support",modules:"Medium",capera:"Response-time pressure across channels and escalations",spectra:"Structured intake, triage, and escalation support",kpis:"First response time · Escalation SLA"}
+  {area:"Accounting and Payables",pressure:"High volume processing and month-end closing intensity",value:"Stable execution of accounting cycles with reduced backlog and improved consistency",success:"Close cycle time · Posting accuracy · Backlog levels"},
+  {area:"Receivables and Collections",pressure:"Ongoing collection cycles and follow-up coordination",value:"Structured and consistent collections process with clear case progression",success:"Collection rate · Days delinquent · Process timeliness"},
+  {area:"Platform and Portfolio Onboarding",pressure:"New mandates introduce setup complexity and coordination effort",value:"Organized onboarding and data readiness from the outset",success:"Onboarding lead time · Data accuracy · Rework levels"},
+  {area:"Data Quality and Management",pressure:"Data inconsistencies impact reporting and operational clarity",value:"Clean, validated, and complete data across core systems",success:"Data completeness · Reconciliation gaps · Reporting reliability"},
+  {area:"Technical Workflow Coordination",pressure:"Administrative workload competes with specialist capacity",value:"Efficient routing, tracking, and status visibility across workflows",success:"Turnaround time · Completion rate · Open item levels"},
+  {area:"Tenant Support Operations",pressure:"High volume communication and escalation handling",value:"Structured intake, triage, and escalation management across channels",success:"First response time · Resolution rate · SLA adherence"}
 ];
 
 // --- TAB SWITCHING ---
@@ -1382,11 +1382,10 @@ function renderModuleDetail() {
 function renderComparison() {
   document.getElementById('comp-rows').innerHTML = COMPARISON.map((r, i) => `
     <div class="comp-row">
-      <div class="comp-service">${r.service}</div>
-      <div class="comp-modules"><span>${r.modules}</span></div>
-      <div class="comp-capera">${r.capera}</div>
-      <div class="comp-spectra">${r.spectra}</div>
-      <div class="comp-kpis">${r.kpis}</div>
+      <div class="comp-service">${r.area}</div>
+      <div class="comp-capera">${r.pressure}</div>
+      <div class="comp-spectra">${r.value}</div>
+      <div class="comp-kpis">${r.success}</div>
     </div>
   `).join('');
 }
