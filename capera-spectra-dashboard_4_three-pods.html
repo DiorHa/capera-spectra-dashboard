@@ -555,55 +555,126 @@ body.auth-locked #auth-gate { display: flex; }
   padding: 2px 8px;
   line-height: 1.4;
 }
-.comparison-mobile-cards { display: none; }
-.comparison-mobile-card {
+.comp-accordion-item {
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: #ffffff;
+}
+.comp-accordion-item + .comp-accordion-item { margin-top: 8px; }
+.comp-accordion-item summary {
+  list-style: none;
+  cursor: pointer;
+  padding: 11px 12px;
+}
+.comp-accordion-item summary::-webkit-details-marker { display: none; }
+.comp-acc-title {
+  font-size: 13px;
+  font-weight: 800;
+  color: var(--text);
+  margin-bottom: 4px;
+  line-height: 1.3;
+}
+.comp-acc-pressure,
+.comp-acc-value {
+  font-size: 11px;
+  line-height: 1.45;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.comp-acc-pressure { color: #8a5b2b; margin-bottom: 2px; }
+.comp-acc-value { color: var(--accent); }
+.comp-acc-detail {
+  padding: 0 12px 10px;
+  border-top: 1px solid rgba(42,54,84,0.12);
+}
+.comp-acc-label {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.9px;
+  color: var(--text-dim);
+  margin: 8px 0 6px;
+}
+
+.workload-bands-mobile { display: none; }
+.workload-bands-wrap {
   background: var(--card);
   border: 1px solid var(--border);
-  border-radius: 14px;
+  border-radius: 16px;
+  padding: 12px;
   box-shadow: 0 8px 18px rgba(15, 23, 42, 0.04);
-  padding: 14px;
 }
-.comparison-mobile-head {
+.workload-bands-title {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--text-dim);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 8px;
+}
+.workload-band-item {
+  border: 1px solid rgba(42,54,84,0.14);
+  border-radius: 12px;
+  background: #ffffff;
+}
+.workload-band-item + .workload-band-item { margin-top: 8px; }
+.workload-band-item summary {
+  list-style: none;
+  cursor: pointer;
+  padding: 10px 11px;
+}
+.workload-band-item summary::-webkit-details-marker { display: none; }
+.workload-band-head {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 8px;
-  margin-bottom: 10px;
 }
-.comparison-mobile-title {
-  font-size: 14px;
+.workload-band-name {
+  font-size: 13px;
   font-weight: 800;
   color: var(--text);
-  line-height: 1.25;
+  line-height: 1.3;
 }
-.comparison-mobile-badge {
+.workload-impact {
   font-size: 10px;
   font-weight: 700;
-  padding: 2px 7px;
+  padding: 2px 8px;
   border-radius: 999px;
   border: 1px solid var(--border);
   background: #f4f7fc;
   color: var(--text-dim);
 }
-.comparison-mobile-row {
-  display: grid;
-  grid-template-columns: 110px 1fr;
-  gap: 10px;
-  padding: 7px 0;
-  border-bottom: 1px solid rgba(42,54,84,0.12);
+.workload-pattern {
+  font-size: 11px;
+  color: var(--text-muted);
+  margin-top: 5px;
+  line-height: 1.45;
 }
-.comparison-mobile-row:last-child { border-bottom: none; padding-bottom: 0; }
-.comparison-mobile-label {
+.workload-band-detail {
+  border-top: 1px solid rgba(42,54,84,0.12);
+  padding: 8px 11px 10px;
+}
+.workload-detail-row + .workload-detail-row { margin-top: 7px; }
+.workload-detail-label {
   font-size: 10px;
   font-weight: 700;
-  color: var(--text-dim);
   text-transform: uppercase;
-  letter-spacing: 0.9px;
+  letter-spacing: 0.85px;
+  color: var(--text-dim);
+  margin-bottom: 2px;
 }
-.comparison-mobile-value {
-  font-size: 12px;
+.workload-detail-value {
+  font-size: 11px;
   color: var(--text);
-  line-height: 1.5;
+  line-height: 1.45;
+}
+.workload-bands-note {
+  font-size: 10px;
+  color: var(--text-dim);
+  margin-top: 8px;
 }
 
 /* Market tab */
@@ -888,7 +959,7 @@ body.auth-locked #auth-gate { display: flex; }
   .phase-icon { margin-left: 0; }
   .comp-cols { grid-template-columns: 1fr; gap: 4px; }
   .comp-cols-head { display: none; }
-  #comp-rows { display: flex; flex-direction: column; gap: 12px; padding: 2px 0; }
+  #comp-rows { display: flex; flex-direction: column; gap: 8px; padding: 2px 0; }
   .comp-row {
     grid-template-columns: 1fr;
     gap: 8px;
@@ -932,13 +1003,7 @@ body.auth-locked #auth-gate { display: flex; }
   .comp-kpi-tags { margin-top: 1px; }
   .comp-kpi-tag { font-size: 10px; padding: 3px 8px; }
   #tab-comparison .comparison-summary-table { display: none; }
-  #tab-comparison .comparison-mobile-cards {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-    margin-top: 12px;
-  }
-  .comparison-mobile-row { grid-template-columns: 1fr; gap: 4px; }
+  #tab-comparison .workload-bands-mobile { display: block; margin-top: 12px; }
   .header-badges { display: none; }
   .spectra-anchor { padding: 18px; }
   .spectra-anchor h3 { font-size: 24px; }
@@ -1346,74 +1411,67 @@ body.auth-locked #auth-gate { display: flex; }
     </div>
   </div>
 
-  <div class="comparison-mobile-cards fade-up d2">
-    <div class="comparison-mobile-card">
-      <div class="comparison-mobile-head">
-        <div class="comparison-mobile-title">Band A: Finance Operations</div>
-        <span class="comparison-mobile-badge">A</span>
-      </div>
-      <div class="comparison-mobile-row">
-        <div class="comparison-mobile-label">Work Pattern</div>
-        <div class="comparison-mobile-value">Continuous activity with predictable peak cycles</div>
-      </div>
-      <div class="comparison-mobile-row">
-        <div class="comparison-mobile-label">Impact</div>
-        <div class="comparison-mobile-value">High</div>
-      </div>
-      <div class="comparison-mobile-row">
-        <div class="comparison-mobile-label">Risk Exposure</div>
-        <div class="comparison-mobile-value">Delays, errors, and pressure on financial close timelines</div>
-      </div>
-      <div class="comparison-mobile-row">
-        <div class="comparison-mobile-label">Internal Cost Driver</div>
-        <div class="comparison-mobile-value">Diversion of specialist capacity</div>
-      </div>
-    </div>
-
-    <div class="comparison-mobile-card">
-      <div class="comparison-mobile-head">
-        <div class="comparison-mobile-title">Band B: Platform and Data Operations</div>
-        <span class="comparison-mobile-badge">B</span>
-      </div>
-      <div class="comparison-mobile-row">
-        <div class="comparison-mobile-label">Work Pattern</div>
-        <div class="comparison-mobile-value">Recurring onboarding and migration waves</div>
-      </div>
-      <div class="comparison-mobile-row">
-        <div class="comparison-mobile-label">Impact</div>
-        <div class="comparison-mobile-value">High</div>
-      </div>
-      <div class="comparison-mobile-row">
-        <div class="comparison-mobile-label">Risk Exposure</div>
-        <div class="comparison-mobile-value">Delayed implementation and data quality inconsistencies</div>
-      </div>
-      <div class="comparison-mobile-row">
-        <div class="comparison-mobile-label">Internal Cost Driver</div>
-        <div class="comparison-mobile-value">Manual rework and data correction effort</div>
-      </div>
-    </div>
-
-    <div class="comparison-mobile-card">
-      <div class="comparison-mobile-head">
-        <div class="comparison-mobile-title">Band C: Tenant Support Operations</div>
-        <span class="comparison-mobile-badge">C</span>
-      </div>
-      <div class="comparison-mobile-row">
-        <div class="comparison-mobile-label">Work Pattern</div>
-        <div class="comparison-mobile-value">Ongoing multi channel demand with escalation layers</div>
-      </div>
-      <div class="comparison-mobile-row">
-        <div class="comparison-mobile-label">Impact</div>
-        <div class="comparison-mobile-value">Medium to High</div>
-      </div>
-      <div class="comparison-mobile-row">
-        <div class="comparison-mobile-label">Risk Exposure</div>
-        <div class="comparison-mobile-value">Service level pressure and customer experience degradation</div>
-      </div>
-      <div class="comparison-mobile-row">
-        <div class="comparison-mobile-label">Internal Cost Driver</div>
-        <div class="comparison-mobile-value">Queue buildup and escalation management load</div>
-      </div>
+  <div class="workload-bands-mobile fade-up d2">
+    <div class="workload-bands-wrap">
+      <div class="workload-bands-title">Workload Bands</div>
+      <details class="workload-band-item" open>
+        <summary>
+          <div class="workload-band-head">
+            <div class="workload-band-name">Band A: Finance Operations</div>
+            <span class="workload-impact">High</span>
+          </div>
+          <div class="workload-pattern">Continuous activity with predictable peak cycles</div>
+        </summary>
+        <div class="workload-band-detail">
+          <div class="workload-detail-row">
+            <div class="workload-detail-label">Risk Exposure</div>
+            <div class="workload-detail-value">Delays, errors, and pressure on financial close timelines</div>
+          </div>
+          <div class="workload-detail-row">
+            <div class="workload-detail-label">Internal Cost Driver</div>
+            <div class="workload-detail-value">Diversion of specialist capacity</div>
+          </div>
+        </div>
+      </details>
+      <details class="workload-band-item">
+        <summary>
+          <div class="workload-band-head">
+            <div class="workload-band-name">Band B: Platform and Data Operations</div>
+            <span class="workload-impact">High</span>
+          </div>
+          <div class="workload-pattern">Recurring onboarding and migration waves</div>
+        </summary>
+        <div class="workload-band-detail">
+          <div class="workload-detail-row">
+            <div class="workload-detail-label">Risk Exposure</div>
+            <div class="workload-detail-value">Delayed implementation and data quality inconsistencies</div>
+          </div>
+          <div class="workload-detail-row">
+            <div class="workload-detail-label">Internal Cost Driver</div>
+            <div class="workload-detail-value">Manual rework and data correction effort</div>
+          </div>
+        </div>
+      </details>
+      <details class="workload-band-item">
+        <summary>
+          <div class="workload-band-head">
+            <div class="workload-band-name">Band C: Tenant Support Operations</div>
+            <span class="workload-impact">Medium-High</span>
+          </div>
+          <div class="workload-pattern">Ongoing multi channel demand with escalation layers</div>
+        </summary>
+        <div class="workload-band-detail">
+          <div class="workload-detail-row">
+            <div class="workload-detail-label">Risk Exposure</div>
+            <div class="workload-detail-value">Service level pressure and customer experience degradation</div>
+          </div>
+          <div class="workload-detail-row">
+            <div class="workload-detail-label">Internal Cost Driver</div>
+            <div class="workload-detail-value">Queue buildup and escalation management load</div>
+          </div>
+        </div>
+      </details>
+      <div class="workload-bands-note">Tap a band row to reveal risk exposure and internal cost driver.</div>
     </div>
   </div>
 </div>
@@ -1569,26 +1627,34 @@ function renderModuleDetail() {
 
 // --- COMPARISON ROWS ---
 function renderComparison() {
-  document.getElementById('comp-rows').innerHTML = COMPARISON.map((r, i) => `
-    <div class="comp-row">
-      <div class="comp-service">
-        <span class="comp-mobile-label">Operational Area</span>
-        ${r.area}
-      </div>
-      <div class="comp-capera">
-        <span class="comp-mobile-label">Business Pressure</span>
-        ${r.pressure}
-      </div>
-      <div class="comp-spectra">
-        <span class="comp-mobile-label">Value Delivered</span>
-        ${r.value}
-      </div>
-      <div class="comp-kpis">
-        <span class="comp-mobile-label">Key Metrics</span>
-        <div class="comp-kpi-tags">
-          ${r.success.split('·').map(k => `<span class="comp-kpi-tag">${k.trim()}</span>`).join('')}
+  const isMobile = window.matchMedia('(max-width: 800px)').matches;
+  const rowsEl = document.getElementById('comp-rows');
+  if (isMobile) {
+    rowsEl.innerHTML = COMPARISON.map((r, i) => `
+      <details class="comp-accordion-item" ${i === 0 ? 'open' : ''}>
+        <summary>
+          <div class="comp-acc-title">${r.area}</div>
+          <div class="comp-acc-pressure">${r.pressure}</div>
+          <div class="comp-acc-value">${r.value}</div>
+        </summary>
+        <div class="comp-acc-detail">
+          <div class="comp-acc-label">Key Metrics</div>
+          <div class="comp-kpi-tags">
+            ${r.success.split('·').map(k => `<span class="comp-kpi-tag">${k.trim()}</span>`).join('')}
+          </div>
+          <div class="comp-acc-label">Supporting Detail</div>
+          <div class="comp-kpis">Mapped to partner delivery coverage and governance checkpoints in pilot execution.</div>
         </div>
-      </div>
+      </details>
+    `).join('');
+    return;
+  }
+  rowsEl.innerHTML = COMPARISON.map((r, i) => `
+    <div class="comp-row">
+      <div class="comp-service">${r.area}</div>
+      <div class="comp-capera">${r.pressure}</div>
+      <div class="comp-spectra">${r.value}</div>
+      <div class="comp-kpis">${r.success}</div>
     </div>
   `).join('');
 }
@@ -1683,6 +1749,15 @@ renderModuleList();
 renderModuleDetail();
 renderComparison();
 renderTeamRoster();
+
+let __lastMobileLayout = window.matchMedia('(max-width: 800px)').matches;
+window.addEventListener('resize', () => {
+  const nowMobile = window.matchMedia('(max-width: 800px)').matches;
+  if (nowMobile !== __lastMobileLayout) {
+    __lastMobileLayout = nowMobile;
+    renderComparison();
+  }
+});
 </script>
 </body>
 </html>
